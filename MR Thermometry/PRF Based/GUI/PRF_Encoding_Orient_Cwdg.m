@@ -1,4 +1,4 @@
-function [ ] = PRF_Encoding_Orient_Cwdg( hObject,~ )
+function [ handles ] = PRF_Encoding_Orient_Cwdg( hObject,~ )
 %EncodingDirection Display frequency and phase encoding direction.
 %   ...
 

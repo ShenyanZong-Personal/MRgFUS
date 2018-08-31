@@ -5,7 +5,7 @@ function [ ] = PRF_Color_Bar_Cwdg( hObject,~ )
 handles = guidata(hObject);
 
 handles.PRF_Color_Bar_cObj              = colorbar();
-handles.PRF_Color_Bar_cOBj.Parent       =   handles.PRF_Sets_uObj;
+handles.PRF_Color_Bar_cObj.Parent       =   handles.PRF_Sets_uObj;
 handles.PRF_Color_Bar_cObj.Location     =   'manual';
 handles.PRF_Color_Bar_cObj.Units        =   'pixels';
 handles.PRF_Color_Bar_cObj.Position     =   [460 80 20 400];

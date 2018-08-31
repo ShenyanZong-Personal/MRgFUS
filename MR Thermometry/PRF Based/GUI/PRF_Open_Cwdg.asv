@@ -35,7 +35,7 @@ else
     handles.PRF_TMaps_Holder_aObj.XLim = [0.50 Headers.Column+0.50];
     handles.PRF_TMaps_Holder_aObj.YLim = [0.50 Headers.Row+0.50];
     
-    handles = Clear_Previous(hObject); %#ok<NASGU>
+    handles = Clear_Previous(hObject); 
     handles = PRF_Encoding_Orient_Cwdg(hObject);
     
     handles.PRF_Para_Obj.Paras_TxT_tObj.String = {['TR: ' num2str(Headers.TR)],...
