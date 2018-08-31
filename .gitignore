@@ -3,3 +3,4 @@ This file lists all files with specfied suffixs I want to ignore.
 *.dcm
 *.mat
 *.zip
+*.asv
