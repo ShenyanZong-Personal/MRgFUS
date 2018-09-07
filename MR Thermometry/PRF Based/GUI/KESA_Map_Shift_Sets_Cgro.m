@@ -14,6 +14,7 @@ guidata(hObject,handles);
 
 KESA_Shift_Map_Cwdg(hObject);
 KESA_Run_Shift_Cwdg(hObject);
+KESA_OnPoints_Cwdg(hObject);
 
 end
 

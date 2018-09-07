@@ -14,6 +14,30 @@ else
     
 end
 
+if isempty(handles.PRF_Para_Obj.Paras_TxT_tObj.String)
+    
+else
+    handles.PRF_Para_Obj.Paras_TxT_tObj.String = '';
+end
+
+if isempty(handles.PRF_Slice_Control_Obj.iSlice_TxT_tObj)
+    
+else
+    handles.PRF_Slice_Control_Obj.iSlice_TxT_tObj.String = '';
+end
+
+if isempty(handles.PRF_Coil_Control_Obj.iCoil_TxT_tObj.String)
+    
+else
+    handles.PRF_Slice_Control_Obj.iCoil_TxT_tObj.String = '';
+end
+
+if isempty(handles.PRF_Time_Phase_Index_Obj.Time_Phase_TxT_tObj.String)
+    
+else
+    handles.PRF_Time_Phase_Index_Obj.Time_Phase_TxT_tObj.String = '';
+end
+
 guidata(hObject,handles);
 
 end
