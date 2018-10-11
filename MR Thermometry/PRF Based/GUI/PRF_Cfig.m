@@ -4,8 +4,8 @@ function [ ] = PRF_Cfig( )
 
 handles.PRF_fObj              = figure();
 
-handles.PRF_fObj.ToolBar      = 'none';
-handles.PRF_fObj.MenuBar      = 'none';
+%handles.PRF_fObj.ToolBar      = 'none';
+%handles.PRF_fObj.MenuBar      = 'none';
 
 handles.PRF_fObj.Name         = 'PRF-based Thermometry';
 handles.PRF_fObj.NumberTitle  = 'off';

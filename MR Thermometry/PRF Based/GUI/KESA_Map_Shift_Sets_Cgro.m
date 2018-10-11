@@ -12,9 +12,11 @@ handles.KESA_Map_Shift_Sets_uObj.Position   = [280 10 1000 360];
 
 guidata(hObject,handles);
 
-KESA_Shift_Map_Cwdg(hObject);
+%KESA_Shift_Map_Cwdg(hObject);
 KESA_Run_Shift_Cwdg(hObject);
 KESA_OnPoints_Cwdg(hObject);
+
+TC_KESA_Initialize_Cwdg(hObject);
 
 end
 
