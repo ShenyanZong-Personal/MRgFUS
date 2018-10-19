@@ -11,7 +11,7 @@ handles.TC_KESA_fObj.Position       = [150 150 1400 800];
 hObject      = handles.TC_KESA_fObj;
 guidata(hObject,handles);
 
-%Cgro_Maps_Charts_TC(hObject);
+TC_KESA_Partial_Reco_Cwdg(hObject);
 %Cgro_Reco_PF_Charts(hObject);
 %Cgro_TC_KESA_Setting(hObject);
 
