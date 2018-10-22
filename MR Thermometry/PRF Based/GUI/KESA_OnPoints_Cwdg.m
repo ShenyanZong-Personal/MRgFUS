@@ -53,10 +53,15 @@ else
             Row_Selected = Point_Selected(1);
             Col_Selected = Point_Selected(2);
             
-            Curve_KESA_iFFT = Maps_KESA.Maps_KESA_iFFT(Row_Selected,Col_Selected);
-            Curve_KESA_iFFT = squeeze(Curve_KESA_iFFT);
             
-            Curves_KESA_iFFT(iNumP,:) = Curve_KESA_iFFT;
+            for iNkxy = 1:Nkxy
+                Maps_KESA_iFFT_Current = Maps_KESA.Maps_KESA_iFFT(:,:,iNkxy);
+                Maps_KESA_iFFT_Current = squeeze(Maps_KESA_iFFT_Current);
+                
+                Magnitude_iFFT_Current          = Maps_KESA_iFFT_Current(Row_Selected,Col_Selected);
+                Curves_KESA_iFFT(iNumP,iNkxy)   = Magnitude_iFFT_Current;
+            end
+            
         end
         
         Curves_KESA.Curves_KESA_iFFT = Curves_KESA_iFFT;
@@ -72,10 +77,14 @@ else
             Row_Selected = Point_Selected(1);
             Col_Selected = Point_Selected(2);
             
-            Curve_KESA_POCS = Maps_KESA.Maps_KESA_POCS(Row_Selected,Col_Selected);
-            Curve_KESA_POCS = squeeze(Curve_KESA_POCS);
+            for iNkxy = 1:Nkxy
+                Maps_KESA_POCS_Current = Maps_KESA.Maps_KESA_POCS(:,:,iNkxy);
+                Maps_KESA_POCS_Current = squeeze(Maps_KESA_POCS_Current);
+                
+                Magnitude_POCS_Current          = Maps_KESA_POCS_Current(Row_Selected,Col_Selected);
+                Curves_KESA_POCS(iNumP,iNkxy)   = Magnitude_POCS_Current;
+            end
             
-            Curves_KESA_POCS(iNumP,:) = Curve_KESA_POCS;
         end
         
         Curves_KESA.Curves_KESA_POCS = Curves_KESA_POCS;
@@ -91,10 +100,15 @@ else
             Row_Selected = Point_Selected(1);
             Col_Selected = Point_Selected(2);
             
-            Curve_KESA_iFFT_Smoothing = Maps_KESA.Maps_KESA_iFFT_Smoothing(Row_Selected,Col_Selected);
-            Curve_KESA_iFFT_Smoothing = squeeze(Curve_KESA_iFFT_Smoothing);
+            for iNkxy = 1:Nkxy
+                Maps_KESA_iFFT_Smoothing_Current = Maps_KESA.Maps_KESA_iFFT_Smoothing(:,:,iNkxy);
+                Maps_KESA_iFFT_Smoothing_Current = squeeze(Maps_KESA_iFFT_Smoothing_Current);
+                
+                Magnitude_iFFT_Smoothing_Current        = Maps_KESA_iFFT_Smoothing_Current(Row_Selected,Col_Selected);
+                Curves_KESA_iFFT_Smoothing(iNumP,iNkxy) = Magnitude_iFFT_Smoothing_Current;
+                
+            end
             
-            Curves_KESA_iFFT_Smoothing(iNumP,:) = Curve_KESA_iFFT_Smoothing;
         end
         
         Curves_KESA.Curves_KESA_iFFT_Smoothing = Curves_KESA_iFFT_Smoothing;

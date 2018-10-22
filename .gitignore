@@ -4,3 +4,5 @@ This file lists all files with specfied suffixs I want to ignore.
 *.mat
 *.zip
 *.asv
+*.fig
+*.jpg

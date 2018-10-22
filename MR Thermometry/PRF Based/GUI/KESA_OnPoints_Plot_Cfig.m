@@ -16,11 +16,44 @@ handles.KESA_OnPoints_Plot_aObj.Units       = 'pixels';
 handles.KESA_OnPoints_Plot_aObj.Position    = [50 100 600 400];
 
 Curves_KESA = UserData.Curves_KESA;
-Headers     = UserData.Headers;
 
 if ~isnumerictype(Curves_KESA.Curves_KESA_iFFT)
     
+    [~,Nkxy] = size(Curves_KESA.Curves_KESA_iFFT);
+    Nkxy_Tick = 1:1:Nkxy;
+    
+    axes(handles.KESA_OnPoints_Plot_aObj);
+    hold on;
+    plot(Nkxy_Tick,Curves_KESA.Curves_KESA_iFFT,...
+        'DisplayName','iFFT',...
+        'LineWidth',1.5);
 end
+
+if ~isnumerictype(Curves_KESA.Curves_KESA_POCS)
+    
+    [~,Nkxy] = size(Curves_KESA.Curves_KESA_POCS);
+    Nkxy_Tick = 1:1:Nkxy;
+    
+    axes(handles.KESA_OnPoints_Plot_aObj);
+    hold on;
+    plot(Nkxy_Tick,Curves_KESA.Curves_KESA_POCS,...
+        'DisplayName','POCS',...
+        'LineWidth',1.5);
+end
+
+if ~isnumerictype(Curves_KESA.Curves_KESA_iFFT_Smoothing)
+    
+    [~,Nkxy] = size(Curves_KESA.Curves_KESA_iFFT_Smoothing);
+    Nkxy_Tick = 1:1:Nkxy;
+    
+    axes(handles.KESA_OnPoints_Plot_aObj);
+    hold on;
+    plot(Nkxy_Tick,Curves_KESA.Curves_KESA_iFFT_Smoothing,...
+        'DisplayName','iFFT-S',...
+        'LineWidth',1.5);
+end
+
+legend('show');
 
 guidata(hObject,handles);
 %{
