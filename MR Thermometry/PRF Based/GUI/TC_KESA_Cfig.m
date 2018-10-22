@@ -12,7 +12,7 @@ hObject      = handles.TC_KESA_fObj;
 guidata(hObject,handles);
 
 TC_KESA_Partial_Reco_Cwdg(hObject);
-%Cgro_Reco_PF_Charts(hObject);
+TC_KESA_Run_Shift_Cwdg(hObject);
 %Cgro_TC_KESA_Setting(hObject);
 
 end
