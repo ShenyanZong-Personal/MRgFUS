@@ -86,7 +86,7 @@ if handles.TC_KESA_iFFT_rObj.Value
             
             for iSlice = 1:NSlice
                 for iCoil = 1:NCoil
-                    for iTimePhase = NTimePhase
+                    for iTimePhase = 1:NTimePhase
                         
                         Map_Cplx_Current    = Maps_Cplx(:,:,iSlice,iCoil,iTimePhase);
                         Map_Cplx_Current    = squeeze(Map_Cplx_Current);

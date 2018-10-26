@@ -157,7 +157,7 @@ function [ Headers ] = Header_ReWrite_result(psd_info)
     Headers.NumberOfSlice           =   psd_info.Nsl;
     Headers.CoilName                =   'unknown';
     Headers.NumberOfCoil            =   psd_info.numrecv;
-    Headers.PhaseEncodingDirection  =   'COL';
+    Headers.PhaseEncodingDirection  =   'ROW';
     Headers.SoftwareVersion         =   'unknown';
 
 end

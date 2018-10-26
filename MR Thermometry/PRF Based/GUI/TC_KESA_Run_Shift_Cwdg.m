@@ -121,7 +121,7 @@ else
         for iCoil = 1:NCoil
             for iTimePhase = 1:NTimePhase
                 
-                Map_KESA_iFFT_Smoothing = Maps_KESA_iFFT_Smoothing(:,:,iSlice,iCoil,iTimePhase);
+                Map_KESA_iFFT_Smoothing = Maps_KESA_iFFT_Smoothing(:,:,iSlice,iCoil,iTimePhase,:);
                 Map_KESA_iFFT_Smoothing = squeeze(Map_KESA_iFFT_Smoothing);
                 
                 Map_Shift_iFFT_Smoothing = Drop_Determine(Map_KESA_iFFT_Smoothing);

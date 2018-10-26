@@ -17,7 +17,7 @@ handles.KESA_OnPoints_Plot_aObj.Position    = [50 100 600 400];
 
 Curves_KESA = UserData.Curves_KESA;
 
-if ~isnumerictype(Curves_KESA.Curves_KESA_iFFT)
+if ~isscalar(Curves_KESA.Curves_KESA_iFFT)
     
     [~,Nkxy] = size(Curves_KESA.Curves_KESA_iFFT);
     Nkxy_Tick = 1:1:Nkxy;
@@ -29,7 +29,7 @@ if ~isnumerictype(Curves_KESA.Curves_KESA_iFFT)
         'LineWidth',1.5);
 end
 
-if ~isnumerictype(Curves_KESA.Curves_KESA_POCS)
+if ~isscalar(Curves_KESA.Curves_KESA_POCS)
     
     [~,Nkxy] = size(Curves_KESA.Curves_KESA_POCS);
     Nkxy_Tick = 1:1:Nkxy;
@@ -41,7 +41,7 @@ if ~isnumerictype(Curves_KESA.Curves_KESA_POCS)
         'LineWidth',1.5);
 end
 
-if ~isnumerictype(Curves_KESA.Curves_KESA_iFFT_Smoothing)
+if ~isscalar(Curves_KESA.Curves_KESA_iFFT_Smoothing)
     
     [~,Nkxy] = size(Curves_KESA.Curves_KESA_iFFT_Smoothing);
     Nkxy_Tick = 1:1:Nkxy;

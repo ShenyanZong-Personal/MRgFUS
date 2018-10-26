@@ -43,7 +43,7 @@ else
         Points_Selected(iNumP,:) = fliplr( Points_Info(iNumP).Position );
     end
     
-    if ~isnumerictype(Maps_KESA.Maps_KESA_iFFT)
+    if ~isscalar(Maps_KESA.Maps_KESA_iFFT)
         [~,~,Nkxy]          = size(Maps_KESA.Maps_KESA_iFFT);
         Curves_KESA_iFFT    = zeros(NumP,Nkxy);
         
@@ -67,7 +67,7 @@ else
         Curves_KESA.Curves_KESA_iFFT = Curves_KESA_iFFT;
     end
     
-    if ~isnumerictype(Maps_KESA.Maps_KESA_POCS)
+    if ~isscalar(Maps_KESA.Maps_KESA_POCS)
         [~,~,Nkxy]          = size(Maps_KESA.Maps_KESA_POCS);
         Curves_KESA_POCS    = zeros(NumP,Nkxy);
         
@@ -90,7 +90,7 @@ else
         Curves_KESA.Curves_KESA_POCS = Curves_KESA_POCS;
     end
     
-    if ~isnumerictype(Maps_KESA.Maps_KESA_iFFT_Smoothing)
+    if ~isscalar(Maps_KESA.Maps_KESA_iFFT_Smoothing)
         [~,~,Nkxy]                  = size(Maps_KESA.Maps_KESA_iFFT_Smoothing);
         Curves_KESA_iFFT_Smoothing  = zeros(NumP,Nkxy);
         
