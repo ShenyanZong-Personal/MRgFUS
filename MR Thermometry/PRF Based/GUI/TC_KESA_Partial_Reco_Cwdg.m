@@ -60,6 +60,15 @@ handles.TC_KESA_Reco_Status_tObj.HorizontalAlignment    = 'left';
 handles.TC_KESA_Reco_Status_tObj.String                 = 'Ready To Run KESA First ... !';
 handles.TC_KESA_Reco_Status_tObj.Position               = [10 480 300 25];
 
+handles.TC_KESA_Info_tObj                       = uicontrol();
+handles.TC_KESA_Info_tObj.Parent                = handles.TC_KESA_fObj;
+handles.TC_KESA_Info_tObj.Style                 = 'text';
+handles.TC_KESA_Info_tObj.FontSize              = 12;
+handles.TC_KESA_Info_tObj.FontName              = 'Times New Roman';
+handles.TC_KESA_Info_tObj.HorizontalAlignment   = 'left';
+handles.TC_KESA_Info_tObj.Position              = [10 10 300 30];
+handles.TC_KESA_Info_tObj.String                = 'Current Infos Are Not Ready ... !';
+
 guidata(hObject,handles);
 
 

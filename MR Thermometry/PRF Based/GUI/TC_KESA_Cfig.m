@@ -13,7 +13,9 @@ guidata(hObject,handles);
 
 TC_KESA_Partial_Reco_Cwdg(hObject);
 TC_KESA_Run_Shift_Cwdg(hObject);
-%Cgro_TC_KESA_Setting(hObject);
+TC_KESA_Coil_Control_Cwdg(hObject);
+TC_KESA_TimePhase_Control_Cwdg(hObject);
+TC_KESA_OnPoint_Cwdg(hObject);
 
 end
 

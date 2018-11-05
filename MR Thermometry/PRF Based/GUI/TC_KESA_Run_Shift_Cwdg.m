@@ -34,7 +34,10 @@ handles.TC_KESA_SM_iFFT_aObj.XColor           = 'none';
 handles.TC_KESA_SM_iFFT_aObj.YColor           = 'none';
 handles.TC_KESA_SM_iFFT_aObj.Title.String     = 'Shift Map In iFFT';
 handles.TC_KESA_SM_iFFT_aObj.Title.FontName   = 'Times New Roman';
-handles.TC_KESA_SM_iFFT_aObj.Colormap         = gray;
+%handles.TC_KESA_SM_iFFT_aObj.Colormap         = gray;
+colormap(handles.TC_KESA_SM_iFFT_aObj,'Gray');
+handles.TC_KESA_SM_iFFT_aObj.CLimMode         = 'manual';
+handles.TC_KESA_SM_iFFT_aObj.CLim             = [63 66];
 
 handles.TC_KESA_SM_POCS_aObj                  = axes();
 handles.TC_KESA_SM_POCS_aObj.Parent           = handles.TC_KESA_Shift_Maps_uObj;
@@ -50,7 +53,10 @@ handles.TC_KESA_SM_POCS_aObj.XColor           = 'none';
 handles.TC_KESA_SM_POCS_aObj.YColor           = 'none';
 handles.TC_KESA_SM_POCS_aObj.Title.String     = 'Shift Map In POCS';
 handles.TC_KESA_SM_POCS_aObj.Title.FontName   = 'Times New Roman';
-handles.TC_KESA_SM_POCS_aObj.Colormap         = gray;
+%handles.TC_KESA_SM_POCS_aObj.Colormap         = gray;
+colormap(handles.TC_KESA_SM_POCS_aObj,'Gray');
+handles.TC_KESA_SM_POCS_aObj.CLimMode         = 'manual';
+handles.TC_KESA_SM_POCS_aObj.CLim             = [63 66];
 
 handles.TC_KESA_SM_iFFT_Smoothing_aObj                  = axes();
 handles.TC_KESA_SM_iFFT_Smoothing_aObj.Parent           = handles.TC_KESA_Shift_Maps_uObj;
@@ -66,7 +72,10 @@ handles.TC_KESA_SM_iFFT_Smoothing_aObj.XColor           = 'none';
 handles.TC_KESA_SM_iFFT_Smoothing_aObj.YColor           = 'none';
 handles.TC_KESA_SM_iFFT_Smoothing_aObj.Title.String     = 'Shift Map In iFFT-S';
 handles.TC_KESA_SM_iFFT_Smoothing_aObj.Title.FontName   = 'Times New Roman';
-handles.TC_KESA_SM_iFFT_Smoothing_aObj.Colormap         = gray;
+%handles.TC_KESA_SM_iFFT_Smoothing_aObj.Colormap         = gray;
+colormap(handles.TC_KESA_SM_iFFT_Smoothing_aObj,'Gray');
+handles.TC_KESA_SM_iFFT_Smoothing_aObj.CLimMode         = 'manual';
+handles.TC_KESA_SM_iFFT_Smoothing_aObj.CLim             = [63 66];
 
 handles.TC_KESA_SM_Status_tObj                      = uicontrol();
 handles.TC_KESA_SM_Status_tObj.Parent               = handles.TC_KESA_fObj;
@@ -121,6 +130,9 @@ else
                 handles.TC_KESA_Shift_Map_iFTT_iObj.CDataMapping    = 'scaled';
                 pause(0.1);
                 
+                handles.TC_KESA_Info_tObj.String = ['Infos: iSlice=' num2str(iSlice) ' ' 'iCoil=' num2str(iCoil) ' ' 'iFrame=' num2str(iTimePhase)];
+                pause(0.1);
+                
             end
         end
     end
@@ -159,6 +171,9 @@ else
                 handles.TC_KESA_Shift_Map_POCS_iObj.Parent          = handles.TC_KESA_SM_POCS_aObj;
                 handles.TC_KESA_Shift_Map_POCS_iObj.CData           = Map_Shift_POCS;
                 handles.TC_KESA_Shift_Map_POCS_iObj.CDataMapping    = 'scaled';
+                pause(0.1);
+                
+                handles.TC_KESA_Info_tObj.String = ['Infos: iSlice=' num2str(iSlice) ' ' 'iCoil=' num2str(iCoil) ' ' 'iFrame=' num2str(iTimePhase)];
                 pause(0.1);
                 
             end
@@ -200,17 +215,142 @@ else
                 handles.TC_KESA_Shift_Map_iFFT_Smoothing_iObj.CDataMapping  = 'scaled';
                 pause(0.1);
                 
+                handles.TC_KESA_Info_tObj.String = ['Infos: iSlice=' num2str(iSlice) ' ' 'iCoil=' num2str(iCoil) ' ' 'iFrame=' num2str(iTimePhase)];
+                pause(0.1);
+                
             end
         end
     end
     
     Maps_Shift.Maps_Shift_iFFT_Smoothing = Maps_Shift_iFFT_Smoothing;
     
-    fprintf('>> All Done! Shift Maps! iFFT-S ... \n');
+    %fprintf('>> All Done! Shift Maps! iFFT-S ... \n');
 end
 
-handles.TC_KESA_fObj.UserData.Maps_Shift = Maps_Shift;
+if isscalar(Maps_Shift.Maps_Shift_iFFT) && isscalar(Maps_Shift.Maps_Shift_POCS) && isscalar(Maps_Shift.Maps_Shift_iFFT_Smoothing)
+    
+else
+    
+   handles.TC_KESA_fObj.UserData.Slice_Current      = NSlice;
+   handles.TC_KESA_fObj.UserData.Coil_Current       = NCoil;
+   handles.TC_KESA_fObj.UserData.TimePhase_Current  = NTimePhase;
+   
+   handles.TC_KESA_iCoil_Info_tObj.String       = num2str(NCoil);
+   handles.TC_KESA_iTimePhase_Info_tObj.String  = num2str(NTimePhase);
+   handles.TC_KESA_fObj.WindowScrollWheelFcn    = @TC_KESA_iTimePhase_Control_Callback;
+   handles.SvsT_OnPoint_pObj.Enable             = 'on';
+   
+end
+
+handles.TC_KESA_fObj.UserData.Maps_Shift        = Maps_Shift;
+
 
 guidata(hObject,handles);
 
 end
+
+function TC_KESA_iTimePhase_Control_Callback(hObject,eV,~)
+
+handles = guidata(hObject);
+
+if isempty(handles.TC_KESA_iTimePhase_Info_tObj.String)
+    
+else
+    Maps_Cplx               = handles.TC_KESA_fObj.UserData.Maps_Cplx;
+    Maps_Shift              = handles.TC_KESA_fObj.UserData.Maps_Shift;
+    [~,~,~,~,NTimePhase]    = size(Maps_Cplx);
+    iSlice_Current          = handles.TC_KESA_fObj.UserData.Slice_Current;
+    iCoil_Current           = handles.TC_KESA_fObj.UserData.Coil_Current;
+    
+    
+    iTimePhase_Current = handles.TC_KESA_fObj.UserData.TimePhase_Current;
+    if iTimePhase_Current > 1 && eV.VerticalScrollCount == 1
+        
+        iTimePhase_Current = iTimePhase_Current -1;
+        
+        if Maps_Shift.Maps_Shift_iFFT == 0
+            
+        else
+            Map_Shift_iFFT = Maps_Shift.Maps_Shift_iFFT(:,:,iSlice_Current,iCoil_Current,iTimePhase_Current);
+            
+            handles.TC_KESA_Shift_Map_iFFT_iObj.CData = Map_Shift_iFFT;
+        end
+        
+        if Maps_Shift.Maps_Shift_POCS == 0
+            
+        else
+            Map_Shift_POCS = Maps_Shift.Maps_Shift_POCS(:,:,iSlice_Current,iCoil_Current,iTimePhase_Current);
+            
+            handles.TC_KESA_Shift_Map_POCS_iObj.CData = Map_Shift_POCS;
+        end
+        
+        if Maps_Shift.Maps_Shift_iFFT_Smoothing == 0
+            
+        else
+            Map_Shift_iFFT_Smoothing = Maps_Shift.Maps_Shift_iFFT_Smoothing(:,:,iSlice_Current,iCoil_Current,iTimePhase_Current);
+            
+            handles.TC_KESA_Shift_Map_iFFT_Smoothing_iObj.CData = Map_Shift_iFFT_Smoothing;
+        end
+        
+        if isscalar(Maps_Shift.Maps_Shift_iFFT) && isscalar(Maps_Shift.Maps_Shift_POCS) && isscalar(Maps_Shift.Maps_Shift_iFFT_Smoothing)
+    
+        else
+    
+            handles.TC_KESA_iTimePhase_Info_tObj.String     = num2str(iTimePhase_Current);
+            handles.TC_KESA_fObj.UserData.TimePhase_Current = iTimePhase_Current;
+            handles.TC_KESA_Info_tObj.String                = ['Infos: iSlice=' num2str(iSlice_Current) ' ' 'iCoil=' num2str(iCoil_Current) ' ' 'iFrame=' num2str(iTimePhase_Current)];
+            
+        end         
+    end
+    
+    if iTimePhase_Current < NTimePhase && eV.VerticalScrollCount == -1
+        
+        iTimePhase_Current = iTimePhase_Current +1;
+        
+        if Maps_Shift.Maps_Shift_iFFT == 0
+            
+        else
+            Map_Shift_iFFT = Maps_Shift.Maps_Shift_iFFT(:,:,iSlice_Current,iCoil_Current,iTimePhase_Current);
+            
+            handles.TC_KESA_Shift_Map_iFFT_iObj.CData = Map_Shift_iFFT;
+        end
+        
+        if Maps_Shift.Maps_Shift_POCS == 0
+            
+        else
+            Map_Shift_POCS = Maps_Shift.Maps_Shift_POCS(:,:,iSlice_Current,iCoil_Current,iTimePhase_Current);
+            
+            handles.TC_KESA_Shift_Map_POCS_iObj.CData = Map_Shift_POCS;
+        end
+        
+        if Maps_Shift.Maps_Shift_iFFT_Smoothing == 0
+            
+        else
+            Map_Shift_iFFT_Smoothing = Maps_Shift.Maps_Shift_iFFT_Smoothing(:,:,iSlice_Current,iCoil_Current,iTimePhase_Current);
+            
+            handles.TC_KESA_Shift_Map_iFFT_Smoothing_iObj.CData = Map_Shift_iFFT_Smoothing;
+        end
+        
+        if isscalar(Maps_Shift.Maps_Shift_iFFT) && isscalar(Maps_Shift.Maps_Shift_POCS) && isscalar(Maps_Shift.Maps_Shift_iFFT_Smoothing)
+    
+        else
+            
+            handles.TC_KESA_iCoil_Info_tObj.String          = num2str(iCoil_Current);
+            handles.TC_KESA_iTimePhase_Info_tObj.String     = num2str(iTimePhase_Current);
+            handles.TC_KESA_fObj.UserData.TimePhase_Current = iTimePhase_Current;
+            handles.TC_KESA_Info_tObj.String                = ['Infos: iSlice=' num2str(iSlice_Current) ' ' 'iCoil=' num2str(iCoil_Current) ' ' 'iFrame=' num2str(iTimePhase_Current)];
+            
+        end         
+    end
+    
+end
+
+
+
+guidata(hObject,handles);
+
+end
+
+
+
+
