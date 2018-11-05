@@ -97,7 +97,7 @@ else
         end      
     end
     
-    fprintf('>> Loading Images.../Done..\n');
+%   fprintf('>> Loading Images.../Done..\n');
     
 end
 

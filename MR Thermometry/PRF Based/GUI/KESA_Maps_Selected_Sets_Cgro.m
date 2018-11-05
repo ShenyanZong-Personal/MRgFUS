@@ -5,9 +5,9 @@ function [  ] = KESA_Maps_Selected_Sets_Cgro( hObject,~ )
 handles = guidata(hObject);
 
 handles.KESA_Maps_Selected_Sets_uObj            = uipanel();
-handles.KESA_Maps_Selected_Sets_uObj.Parent     = handles.KESA_fObj;
+handles.KESA_Maps_Selected_Sets_uObj.Parent     = handles.KESA_One_fObj;
 handles.KESA_Maps_Selected_Sets_uObj.Units      = 'pixels';
-handles.KESA_Maps_Selected_Sets_uObj.Position   = [10 10 250 750];
+handles.KESA_Maps_Selected_Sets_uObj.Position   = [10 50 775 310];
 
 guidata(hObject,handles);
 

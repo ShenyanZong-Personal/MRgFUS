@@ -4,9 +4,9 @@ function [  ] = KESA_Partial_Reco_Proc_Cwdg( hObject,~ )
 
 handles = guidata(hObject);
 
-Row         = handles.KESA_fObj.UserData.Headers.Row;
-Col         = handles.KESA_fObj.UserData.Headers.Column;
-Magni_Map   = handles.KESA_fObj.UserData.Magni_Map_Current;
+Row         = handles.KESA_Two_fObj.UserData.Headers.Row;
+Col         = handles.KESA_Two_fObj.UserData.Headers.Column;
+Magni_Map   = handles.KESA_Two_fObj.UserData.Magni_Map_Current;
 kspace      = fftshift( fft2(Magni_Map) );
 
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj                  = axes();
@@ -22,6 +22,9 @@ handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj.YLim             = [0.5 C
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj.XColor           = 'none';
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj.YColor           = 'none';
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj.CLim             = [0 1e03];
+handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj.Title.String     = 'Original Partial k-space';
+handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj.Title.FontSize   = 12;
+handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj.Title.FontName   = 'Times New Roman';
 colormap(handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj,'Gray');
 
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_iObj                = image();
@@ -41,6 +44,9 @@ handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_Reco_aObj.YLim            = [0
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_Reco_aObj.XColor          = 'none';
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_Reco_aObj.YColor          = 'none';
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_Reco_aObj.CLim            = [0 1e03];
+handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_Reco_aObj.Title.String    = 'Partial k-space After Method';
+handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_Reco_aObj.Title.FontSize  = 12;
+handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_Reco_aObj.Title.FontName  = 'Times New Roman';
 colormap(handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_Reco_aObj,'Gray');
 
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_Reco_iObj                 = image();
@@ -59,6 +65,9 @@ handles.KESA_Partial_Reco_Proc_Obj.Magni_Map_Reco_aObj.XLim           = [0.5 Row
 handles.KESA_Partial_Reco_Proc_Obj.Magni_Map_Reco_aObj.YLim           = [0.5 Col+0.5];
 handles.KESA_Partial_Reco_Proc_Obj.Magni_Map_Reco_aObj.XColor         = 'none';
 handles.KESA_Partial_Reco_Proc_Obj.Magni_Map_Reco_aObj.YColor         = 'none';
+handles.KESA_Partial_Reco_Proc_Obj.Magni_Map_Reco_aObj.Title.String   = 'Magnitude Map After Reco';
+handles.KESA_Partial_Reco_Proc_Obj.Magni_Map_Reco_aObj.Title.FontSize = 12;
+handles.KESA_Partial_Reco_Proc_Obj.Magni_Map_Reco_aObj.Title.FontName = 'Times New Roman';
 colormap(handles.KESA_Partial_Reco_Proc_Obj.Magni_Map_Reco_aObj,'Gray');
 
 handles.KESA_Partial_Reco_Proc_Obj.Magni_Map_Reco_iObj                = image();
@@ -80,7 +89,7 @@ handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_Algor_TxT_tObj.Parent           
 handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_Algor_TxT_tObj.Style            = 'text';
 handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_Algor_TxT_tObj.Units            = 'pixels';
 handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_Algor_TxT_tObj.Position         = [0 20 80 20];
-handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_Algor_TxT_tObj.String           = 'Algor:';
+handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_Algor_TxT_tObj.String           = 'Algors:';
 handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_Algor_TxT_tObj.FontSize         = 12;
 handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_Algor_TxT_tObj.BackgroundColor  = 'w';
 
@@ -148,6 +157,25 @@ handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_Smoothing_rObj.Position    
 handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_Smoothing_rObj.FontSize    = 12;
 handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_Smoothing_rObj.String      = 'iFFT-S';
 %}
+
+handles.KESA_Partial_Reco_Steps_Info_tObj                       = uicontrol();
+handles.KESA_Partial_Reco_Steps_Info_tObj.Parent                = handles.KESA_Two_fObj;
+handles.KESA_Partial_Reco_Steps_Info_tObj.Style                 = 'text';
+handles.KESA_Partial_Reco_Steps_Info_tObj.String                = 'Prepare To Show Process Of Partial Fourier Reconstruction ... !';
+handles.KESA_Partial_Reco_Steps_Info_tObj.FontSize              = 12;
+handles.KESA_Partial_Reco_Steps_Info_tObj.FontName              = 'Times New Roman';
+handles.KESA_Partial_Reco_Steps_Info_tObj.HorizontalAlignment   = 'left';
+handles.KESA_Partial_Reco_Steps_Info_tObj.Position              = [10 50 500 25];
+
+handles.KESA_Partial_Reco_Proc_Info_tObj                        = uicontrol();
+handles.KESA_Partial_Reco_Proc_Info_tObj.Parent                 = handles.KESA_Two_fObj;
+handles.KESA_Partial_Reco_Proc_Info_tObj.Style                  = 'text';
+handles.KESA_Partial_Reco_Proc_Info_tObj.FontSize               = 12;
+handles.KESA_Partial_Reco_Proc_Info_tObj.FontName               = 'Times New Roman';
+handles.KESA_Partial_Reco_Proc_Info_tObj.HorizontalAlignment    = 'left';
+handles.KESA_Partial_Reco_Proc_Info_tObj.Position               = [10 500 500 25];
+handles.KESA_Partial_Reco_Proc_Info_tObj.String                 = 'Partial Fourier Reconstruction Process';
+
 guidata(hObject,handles);
 
 end
@@ -156,8 +184,8 @@ function [ ] = Start_KESA_Callback(hObject,~)
 
 handles = guidata(hObject);
 
-Headers                 = handles.KESA_fObj.UserData.Headers;
-Magni_Map               = handles.KESA_fObj.UserData.Magni_Map_Current;
+Headers                 = handles.KESA_Two_fObj.UserData.Headers;
+Magni_Map               = handles.KESA_Two_fObj.UserData.Magni_Map_Current;
 kspace                  = fftshift( fft2(Magni_Map) ) ;
 Row                     = Headers.Row;
 Col                     = Headers.Column;
@@ -166,10 +194,12 @@ PhaseEncodingDirection  = Headers.PhaseEncodingDirection;
 Maps_KESA.Maps_KESA_iFFT            = 0;
 Maps_KESA.Maps_KESA_POCS            = 0;
 Maps_KESA.Maps_KESA_iFFT_Smoothing  = 0;
-fprintf('>> Performing Parital Reconstruction ...\n');
+%fprintf('>> Performing Parital Reconstruction ...\n');
 
 %---   Inverse Fourier Transform Reconstruction   ---
 if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_rObj.Value
+    
+    handles.KESA_Partial_Reco_Steps_Info_tObj.String = 'Doing Direct Fourier Reconstruction ... !';
     
     switch PhaseEncodingDirection
         
@@ -229,6 +259,8 @@ end
 %---   POCS Reconstruction   ---
 if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_POCS_rObj.Value
     
+    handles.KESA_Partial_Reco_Steps_Info_tObj.String = 'Doing Iterative POCS Reconstruction ... !';
+    
     switch PhaseEncodingDirection
         
         case 'ROW'
@@ -287,6 +319,8 @@ end
 %---   Inverse Fourier Transform Reconstruction with Soomthing   ---
 if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_Smoothing_rObj.Value
     
+    handles.KESA_Partial_Reco_Steps_Info_tObj.String = 'Doing Fourier Reconstruction With Smoothing Window ... !';
+    
     switch PhaseEncodingDirection
         
         case 'ROW'
@@ -343,7 +377,35 @@ if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_Smoothing_rObj.Value
 end
 %--------------------------------------------------------------------------
 
-handles.KESA_fObj.UserData.Maps_KESA = Maps_KESA;
+if ~handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_rObj.Value && ...
+        ~handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_POCS_rObj.Value && ...
+        ~handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_Smoothing_rObj.Value
+    
+    handles.KESA_Partial_Reco_Steps_Info_tObj.String = 'Choose An Algorithm First ... !';
+    
+else
+    
+    handles.KESA_Partial_Reco_Steps_Info_tObj.String = 'Completed All Partial Fourier Reconstruction ... !';
+    
+    handles_all = findobj('Type','figure');
+    nfigure     = numel(handles_all);
+    for ifigure = 1:nfigure
+        if strcmp( handles_all(ifigure).Tag,'KESA_One' )
+            
+            handles_in_KESA_One = guidata( handles_all(ifigure) );
+            
+            handles_in_KESA_One.KESA_OnPoints_pObj.Enable           = 'on';
+            handles_in_KESA_One.KESA_One_fObj.UserData.Maps_KESA    = Maps_KESA;
+            
+        end
+    end
+    
+    handles_in_KESA_One.KESA_OnPoints_Status_tObj.String = 'Need To Put A Datatip On Maps ... !';
+    guidata(handles_in_KESA_One.KESA_One_fObj,handles_in_KESA_One);
+    
+end
+
+handles.KESA_Two_fObj.UserData.Maps_KESA = Maps_KESA;
 %{
 Headers                 = handles.KESA_fObj.UserData.Headers;
 Magni_Map               = handles.KESA_fObj.UserData.Magni_Map_Current;

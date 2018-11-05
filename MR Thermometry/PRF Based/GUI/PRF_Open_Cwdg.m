@@ -8,7 +8,8 @@ handles.PRF_Open_uObj                 =   uicontrol();
 handles.PRF_Open_uObj.Parent          =   handles.PRF_Sets_uObj;
 handles.PRF_Open_uObj.Style           =   'pushbutton';
 handles.PRF_Open_uObj.Position        =   [550 450 100 30];
-handles.PRF_Open_uObj.String          =   'Open/PRF';
+handles.PRF_Open_uObj.String          =   'PRF';
+handles.PRF_Open_uObj.FontName        =   'Times New Roman';
 handles.PRF_Open_uObj.FontSize        =   12;
 handles.PRF_Open_uObj.Callback        =   @PRF_Open_CallBack;
 
@@ -23,6 +24,8 @@ function [ ] = PRF_Open_CallBack( hObject,~ )
 
 handles = guidata(hObject);
 
+handles.PRF_InStep_tObj.String  = 'Loading Maps ... !';
+
 [Maps_Cplx,Headers]     =   Read_Image();
 
 handles.PRF_fObj.UserData.Maps_Cplx  =   Maps_Cplx;
@@ -31,6 +34,10 @@ handles.PRF_fObj.UserData.Headers    =   Headers;
 if Maps_Cplx == 0
     
 else
+    
+    handles.PRF_Open_uObj.Enable            = 'off';
+    handles.KESA_Initialize_pObj.Enable     = 'off';
+    handles.TC_KESA_Initialize_pObj.Enable  = 'off';
     
     handles.PRF_TMaps_Holder_aObj.XLim = [0.50 Headers.Column+0.50];
     handles.PRF_TMaps_Holder_aObj.YLim = [0.50 Headers.Row+0.50];
@@ -48,11 +55,13 @@ else
         ['Matrix: ' num2str(Headers.Row) '×' num2str(Headers.Column)],...
         ['FOV: ' num2str(Headers.FOV)]};
     
+    handles.PRF_InStep_tObj.String      = 'Calculating Temperature Maps ... ! (PRF)';
+    
     [TMaps_Coil,TMaps_Combined]                 = PRF(hObject);
     handles.PRF_fObj.UserData.TMaps_Coil        = TMaps_Coil;
     handles.PRF_fObj.UserData.TMaps_Combined    = TMaps_Combined;
     
-    fprintf('>> Temperature Maps! Ready! ...\n');
+    %fprintf('>> Temperature Maps! Ready! ...\n');
     
     handles.PRF_TMap_iObj                = image();
     handles.PRF_TMap_iObj.CDataMapping   = 'scaled';
@@ -67,6 +76,7 @@ else
         case 1
             TMaps_Current = TMaps_Combined;
     end
+    
     handles.PRF_fObj.UserData.TMaps_Current     = TMaps_Current;
     
     for iSlice = 1:NSlice
@@ -96,7 +106,15 @@ else
     handles.PRF_Coil_Control_Obj.Left_pObj.Callback     = @Left_Coil_Wheel_Callback;
     handles.PRF_Coil_Control_Obj.Right_pObj.Callback    = @Right_Coil_Wheel_Callback;
     
+    handles.PRF_InStep_tObj.String = 'Temperature Maps Are Ready ... !';
+    
+    handles.PRF_Open_uObj.Enable            = 'on';
+    handles.KESA_Initialize_pObj.Enable     = 'on';
+    handles.TC_KESA_Initialize_pObj.Enable  = 'on';
+    
 end
+
+
 
 guidata(hObject,handles);
 

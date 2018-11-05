@@ -19,7 +19,7 @@ B0      = Headers.B0;
 TE      = Headers.TE*(10^-3);
 
 
-fprintf('>> Start PRF Algorithm ...\n');
+%fprintf('>> Start PRF Algorithm ...\n');
 
 if NCoil == 1
     fprintf('>> Unknown ...\n');

@@ -10,6 +10,8 @@ handles.KESA_Initialize_pObj.Parent     = handles.PRF_DataA_uObj;
 handles.KESA_Initialize_pObj.String     = 'KESA';
 handles.KESA_Initialize_pObj.FontSize   = 12;
 handles.KESA_Initialize_pObj.Position   = [50 450 100 30];
+handles.KESA_Initialize_pObj.FontName   = 'Times New Roman';
+handles.KESA_Initialize_pObj.Enable     = 'off';
 
 handles.KESA_Initialize_pObj.Callback  = @KESA_Initialize_Callback;
 
@@ -77,14 +79,14 @@ handles.KESA_Initialize_pObj.UserData.Magni_Map_Current     = Magni_Map_Current;
 handles.KESA_Initialize_pObj.UserData.Phase_Map_Current     = Phase_Map_Current;
 handles.KESA_Initialize_pObj.UserData.TMap_Current          = TMap_Current;
 handles.KESA_Initialize_pObj.UserData.Maps_Cplx             = Maps_Cplx;
+handles.KESA_Initialize_pObj.UserData.Slice_Current         = Slice_Current;
+handles.KESA_Initialize_pObj.UserData.Coil_Current          = Coil_Current;
+handles.KESA_Initialize_pObj.UserData.TimePhase_Current     = TimePhase_Current;
 
-%handles.KESA_Initialize_pObj.UserData.Slice_Current     = Slice_Current;
-%handles.KESA_Initialize_pObj.UserData.Coil_Current      = Coil_Current;
-%handles.KESA_Initialize_pObj.UserData.TimePhase_Current = TimePhase_Current;
+%fprintf('>> Data Delievery! Done! ...\n');
 
-fprintf('>> Data Delievery! Done! ...\n');
-
-KESA_Cfig(handles.KESA_Initialize_pObj.UserData);
+KESA_One_Cfig(handles.KESA_Initialize_pObj.UserData);
+KESA_Two_Cfig(handles.KESA_Initialize_pObj.UserData);
 
 guidata(hObject,handles);
 

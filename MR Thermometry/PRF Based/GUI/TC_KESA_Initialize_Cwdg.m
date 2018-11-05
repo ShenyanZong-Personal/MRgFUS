@@ -4,14 +4,16 @@ function [  ] = TC_KESA_Initialize_Cwdg( hObject,~ )
 
 handles = guidata(hObject);
 
-handles.TC_KESA_pObj             = uicontrol();
-handles.TC_KESA_pObj.Parent      = handles.KESA_Map_Shift_Sets_uObj;
-handles.TC_KESA_pObj.Style       = 'pushbutton';
-handles.TC_KESA_pObj.Units       = 'pixels';
-handles.TC_KESA_pObj.Position    = [10 10 100 40];
-handles.TC_KESA_pObj.FontSize    = 12;
-handles.TC_KESA_pObj.String      = 'TC_KESA';
-handles.TC_KESA_pObj.Callback    = @TC_KESA_Initialize_Callback;
+handles.TC_KESA_Initialize_pObj             = uicontrol();
+handles.TC_KESA_Initialize_pObj.Parent      = handles.PRF_DataA_uObj;
+handles.TC_KESA_Initialize_pObj.Style       = 'pushbutton';
+handles.TC_KESA_Initialize_pObj.Units       = 'pixels';
+handles.TC_KESA_Initialize_pObj.Position    = [50 400 100 30];
+handles.TC_KESA_Initialize_pObj.FontSize    = 12;
+handles.TC_KESA_Initialize_pObj.String      = 'KESA-TC';
+handles.TC_KESA_Initialize_pObj.Callback    = @TC_KESA_Initialize_Callback;
+handles.TC_KESA_Initialize_pObj.FontName    = 'Times New Roman';
+handles.TC_KESA_Initialize_pObj.Enable      = 'off';
 
 
 guidata(hObject,handles);
@@ -23,17 +25,17 @@ function [  ] = TC_KESA_Initialize_Callback(hObject,~)
 
 handles = guidata(hObject);
 
-Maps_Cplx   = handles.KESA_fObj.UserData.Maps_Cplx;
-Headers     = handles.KESA_fObj.UserData.Headers;
+Maps_Cplx   = handles.PRF_fObj.UserData.Maps_Cplx;
+Headers     = handles.PRF_fObj.UserData.Headers;
 %TMaps       = handles.MR_PRF.UserData.TMaps;
 
-handles.TC_KESA_pObj.UserData.Maps_Cplx  = Maps_Cplx;
-handles.TC_KESA_pObj.UserData.Headers    = Headers;
+handles.TC_KESA_Initialize_pObj.UserData.Maps_Cplx  = Maps_Cplx;
+handles.TC_KESA_Initialize_pObj.UserData.Headers    = Headers;
 %handles.TC_KESA_pObj.UserData.TMaps      = TMaps;
 
-fprintf('>> All Data Delievery is Ready ...\n');
+%fprintf('>> All Data Delievery is Ready ...\n');
 
-TC_KESA_Cfig(handles.TC_KESA_pObj.UserData);
+TC_KESA_Cfig(handles.TC_KESA_Initialize_pObj.UserData);
 
 
 guidata(hObject,handles);

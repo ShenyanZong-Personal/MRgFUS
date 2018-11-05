@@ -6,7 +6,7 @@ handles.TC_KESA_fObj                = figure();
 handles.TC_KESA_fObj.UserData       = UserData;
 handles.TC_KESA_fObj.Name           = 'TC_KESA-based Thermometry';
 handles.TC_KESA_fObj.NumberTitle    = 'off';
-handles.TC_KESA_fObj.Position       = [150 150 1400 800];
+handles.TC_KESA_fObj.Position       = [50 50 1200 600];
 
 hObject      = handles.TC_KESA_fObj;
 guidata(hObject,handles);

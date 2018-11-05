@@ -5,16 +5,29 @@ function [  ] = KESA_OnPoints_Cwdg( hObject )
 handles = guidata(hObject);
 
 handles.KESA_OnPoints_pObj          = uicontrol();
-handles.KESA_OnPoints_pObj.Parent   = handles.KESA_Map_Shift_Sets_uObj;
+%handles.KESA_OnPoints_pObj.Parent   = handles.KESA_Map_Shift_Sets_uObj;
+handles.KESA_OnPoints_pObj.Parent   = handles.KESA_One_fObj;
 handles.KESA_OnPoints_pObj.Style    = 'pushbutton';
 handles.KESA_OnPoints_pObj.Units    = 'pixels';
 handles.KESA_OnPoints_pObj.FontSize = 12;
 handles.KESA_OnPoints_pObj.String   = 'KOP-Plot';
-handles.KESA_OnPoints_pObj.Position = [370 260 80 40];
+%handles.KESA_OnPoints_pObj.Position = [370 260 80 40];
+handles.KESA_OnPoints_pObj.Position = [810 330 100 30];
+handles.KESA_OnPoints_pObj.FontSize = 12;
+handles.KESA_OnPoints_pObj.FontName = 'Times New Roman';
 handles.KESA_OnPoints_pObj.Callback = @Plot_KESA_OnPoints_Callback;
-
+handles.KESA_OnPoints_pObj.Enable   = 'off';
 
 %Points_DCM_Obj = datacursormode(handles.KESA_fObj);
+
+handles.KESA_OnPoints_Status_tObj                       = uicontrol();
+handles.KESA_OnPoints_Status_tObj.Parent                = handles.KESA_One_fObj;
+handles.KESA_OnPoints_Status_tObj.Style                 = 'text';
+handles.KESA_OnPoints_Status_tObj.Position              = [915 335 300 20];
+handles.KESA_OnPoints_Status_tObj.FontSize              = 12;
+handles.KESA_OnPoints_Status_tObj.FontName              = 'Times New Roman';
+handles.KESA_OnPoints_Status_tObj.String                = 'KESA Maps Are Not Ready ... !';
+handles.KESA_OnPoints_Status_tObj.HorizontalAlignment   = 'left';
 
 guidata(hObject,handles);
 
@@ -24,9 +37,9 @@ function [  ] = Plot_KESA_OnPoints_Callback(hObject,~)
 
 handles = guidata(hObject);
 
-Maps_KESA       = handles.KESA_fObj.UserData.Maps_KESA;
+Maps_KESA       = handles.KESA_One_fObj.UserData.Maps_KESA;
 
-Points_DCM_Obj  = datacursormode(handles.KESA_fObj);
+Points_DCM_Obj  = datacursormode(handles.KESA_One_fObj);
 Points_Info     = getCursorInfo(Points_DCM_Obj);
 
 Curves_KESA.Curves_KESA_iFFT            = 0;
@@ -34,7 +47,10 @@ Curves_KESA.Curves_KESA_POCS            = 0;
 Curves_KESA.Curves_KESA_iFFT_Smoothing  = 0;
 
 if isempty(Points_Info)
-    fprintf('>> Please Add Data Cursor ... \n');
+    
+    %fprintf('>> Please Add Data Cursor ... \n');
+    handles.KESA_OnPoints_Status_tObj.String = 'Need To Put A Datatip On Maps ... !';
+    
 else
     [~,NumP]        = size(Points_Info);
     Points_Selected = zeros(NumP,2);
@@ -113,6 +129,9 @@ else
         
         Curves_KESA.Curves_KESA_iFFT_Smoothing = Curves_KESA_iFFT_Smoothing;
     end
+    
+    handles.KESA_OnPoints_Status_tObj.String = 'Plotted ... !';
+    
 end
 %{
 [~,~,Nkxy]      = size(Maps_KESA);
@@ -153,9 +172,10 @@ end
 %}
 
 handles.KESA_OnPoints_pObj.UserData.Curves_KESA = Curves_KESA;
-handles.KESA_OnPoints_pObj.UserData.Headers     = handles.KESA_fObj.UserData.Headers;
+handles.KESA_OnPoints_pObj.UserData.Headers     = handles.KESA_One_fObj.UserData.Headers;
+handles.KESA_One_fObj.UserData.Curves_KESA      = Curves_KESA;
 
-fprintf('>> Build KESA Curves On Data Cursor ... / Done ... \n ');
+%fprintf('>> Build KESA Curves On Data Cursor ... / Done ... \n ');
 guidata(hObject,handles);
 
 KESA_OnPoints_Plot_Cfig(handles.KESA_OnPoints_pObj.UserData);
