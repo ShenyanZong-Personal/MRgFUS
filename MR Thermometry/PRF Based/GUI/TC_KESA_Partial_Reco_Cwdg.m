@@ -111,8 +111,9 @@ if handles.TC_KESA_iFFT_rObj.Value
                         
                         Map_Cplx_Current    = Maps_Cplx(:,:,iSlice,iCoil,iTimePhase);
                         Map_Cplx_Current    = squeeze(Map_Cplx_Current);
-                        Magni_Map_Current   = abs(Map_Cplx_Current);
-                        kspace              = fftshift( fft2(Magni_Map_Current) );
+                        %Magni_Map_Current   = abs(Map_Cplx_Current);
+                        %kspace              = fftshift( fft2(Magni_Map_Current) );
+                        kspace              = fftshift( fft2(Map_Cplx_Current) );
                         
                         for iNkxy = 1:Nkxy
                 
@@ -142,8 +143,9 @@ if handles.TC_KESA_iFFT_rObj.Value
                         
                         Map_Cplx_Current    = Maps_Cplx(:,:,iSlice,iCoil,iTimePhase);
                         Map_Cplx_Current    = squeeze(Map_Cplx_Current);
-                        Magni_Map_Current   = abs(Map_Cplx_Current);
-                        kspace              = fftshift( fft2(Magni_Map_Current) );
+                        %Magni_Map_Current   = abs(Map_Cplx_Current);
+                        %kspace              = fftshift( fft2(Magni_Map_Current) );
+                        kspace              = fftshift( fft2(Map_Cplx_Current) );
                         
                         for iNkxy = 1:Nkxy
                 
@@ -187,8 +189,9 @@ if handles.TC_KESA_POCS_rObj.Value
                         
                         Map_Cplx_Current    = Maps_Cplx(:,:,iSlice,iCoil,iTimePhase);
                         Map_Cplx_Current    = squeeze(Map_Cplx_Current);
-                        Magni_Map_Current   = abs(Map_Cplx_Current);
-                        kspace              = fftshift( fft2(Magni_Map_Current) );
+                        %Magni_Map_Current   = abs(Map_Cplx_Current);
+                        %kspace              = fftshift( fft2(Magni_Map_Current) );
+                        kspace              = fftshift( fft2(Map_Cplx_Current) );
                         
                         for  iNkxy = 1:Nkxy
                 
@@ -217,8 +220,9 @@ if handles.TC_KESA_POCS_rObj.Value
                         
                         Map_Cplx_Current    = Maps_Cplx(:,:,iSlice,iCoil,iTimePhase);
                         Map_Cplx_Current    = squeeze(Map_Cplx_Current);
-                        Magni_Map_Current   = abs(Map_Cplx_Current);
-                        kspace              = fftshift( fft2(Magni_Map_Current) );
+                        %Magni_Map_Current   = abs(Map_Cplx_Current);
+                        %kspace              = fftshift( fft2(Magni_Map_Current) );
+                        kspace              = fftshift( fft2(Map_Cplx_Current) );
                         
                         for iNkxy = 1:Nkxy
                 
@@ -262,8 +266,9 @@ if handles.TC_KESA_iFFT_Smoothing_rObj.Value
                         
                         Map_Cplx_Current    = Maps_Cplx(:,:,iSlice,iCoil,iTimePhase);
                         Map_Cplx_Current    = squeeze(Map_Cplx_Current);
-                        Magni_Map_Current   = abs(Map_Cplx_Current);
-                        kspace              = fftshift( fft2(Magni_Map_Current) );
+                        %Magni_Map_Current   = abs(Map_Cplx_Current);
+                        %kspace              = fftshift( fft2(Magni_Map_Current) );
+                        kspace              = fftshift( fft2(Map_Cplx_Current) );
                         
                         for iNkxy = 1:Nkxy
                 
@@ -292,8 +297,9 @@ if handles.TC_KESA_iFFT_Smoothing_rObj.Value
                         
                         Map_Cplx_Current    = Maps_Cplx(:,:,iSlice,iCoil,iTimePhase);
                         Map_Cplx_Current    = squeeze(Map_Cplx_Current);
-                        Magni_Map_Current   = abs(Map_Cplx_Current);
-                        kspace              = fftshift( fft2(Magni_Map_Current) );
+                        %Magni_Map_Current   = abs(Map_Cplx_Current);
+                        %kspace              = fftshift( fft2(Magni_Map_Current) );
+                        kspace              = fftshift( fft2(Map_Cplx_Current) );
                         
                         for iNkxy = 1:Nkxy
                 

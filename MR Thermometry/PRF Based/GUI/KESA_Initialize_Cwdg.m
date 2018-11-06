@@ -79,6 +79,7 @@ handles.KESA_Initialize_pObj.UserData.Magni_Map_Current     = Magni_Map_Current;
 handles.KESA_Initialize_pObj.UserData.Phase_Map_Current     = Phase_Map_Current;
 handles.KESA_Initialize_pObj.UserData.TMap_Current          = TMap_Current;
 handles.KESA_Initialize_pObj.UserData.Maps_Cplx             = Maps_Cplx;
+handles.KESA_Initialize_pObj.UserData.Map_Cplx_Current      = Map_Cplx_Current;
 handles.KESA_Initialize_pObj.UserData.Slice_Current         = Slice_Current;
 handles.KESA_Initialize_pObj.UserData.Coil_Current          = Coil_Current;
 handles.KESA_Initialize_pObj.UserData.TimePhase_Current     = TimePhase_Current;

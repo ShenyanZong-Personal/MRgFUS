@@ -7,7 +7,8 @@ handles = guidata(hObject);
 Row         = handles.KESA_Two_fObj.UserData.Headers.Row;
 Col         = handles.KESA_Two_fObj.UserData.Headers.Column;
 Magni_Map   = handles.KESA_Two_fObj.UserData.Magni_Map_Current;
-kspace      = fftshift( fft2(Magni_Map) );
+Map_Cplx    = handles.KESA_Two_fObj.UserData.Map_Cplx_Current;
+kspace      = fftshift( fft2(Map_Cplx) );
 
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj                  = axes();
 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_aObj.Parent           = handles.KESA_Partial_Reco_Sets_uObj;
@@ -185,8 +186,9 @@ function [ ] = Start_KESA_Callback(hObject,~)
 handles = guidata(hObject);
 
 Headers                 = handles.KESA_Two_fObj.UserData.Headers;
-Magni_Map               = handles.KESA_Two_fObj.UserData.Magni_Map_Current;
-kspace                  = fftshift( fft2(Magni_Map) ) ;
+%Magni_Map               = handles.KESA_Two_fObj.UserData.Magni_Map_Current;
+Map_Cplx                = handles.KESA_Two_fObj.UserData.Map_Cplx_Current;
+kspace                  = fftshift( fft2(Map_Cplx) ) ;
 Row                     = Headers.Row;
 Col                     = Headers.Column;
 PhaseEncodingDirection  = Headers.PhaseEncodingDirection;

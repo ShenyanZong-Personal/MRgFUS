@@ -111,6 +111,7 @@ else
     handles.PRF_Open_uObj.Enable            = 'on';
     handles.KESA_Initialize_pObj.Enable     = 'on';
     handles.TC_KESA_Initialize_pObj.Enable  = 'on';
+    handles.PRF_OnPoints_TVST_pObj.Enable   = 'on';
     
 end
 
