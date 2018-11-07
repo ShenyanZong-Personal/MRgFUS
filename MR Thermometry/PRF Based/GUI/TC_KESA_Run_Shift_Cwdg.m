@@ -37,7 +37,7 @@ handles.TC_KESA_SM_iFFT_aObj.Title.FontName   = 'Times New Roman';
 %handles.TC_KESA_SM_iFFT_aObj.Colormap         = gray;
 colormap(handles.TC_KESA_SM_iFFT_aObj,'Gray');
 handles.TC_KESA_SM_iFFT_aObj.CLimMode         = 'manual';
-handles.TC_KESA_SM_iFFT_aObj.CLim             = [63 66];
+handles.TC_KESA_SM_iFFT_aObj.CLim             = [63 65];
 
 handles.TC_KESA_SM_POCS_aObj                  = axes();
 handles.TC_KESA_SM_POCS_aObj.Parent           = handles.TC_KESA_Shift_Maps_uObj;
@@ -56,7 +56,7 @@ handles.TC_KESA_SM_POCS_aObj.Title.FontName   = 'Times New Roman';
 %handles.TC_KESA_SM_POCS_aObj.Colormap         = gray;
 colormap(handles.TC_KESA_SM_POCS_aObj,'Gray');
 handles.TC_KESA_SM_POCS_aObj.CLimMode         = 'manual';
-handles.TC_KESA_SM_POCS_aObj.CLim             = [63 66];
+handles.TC_KESA_SM_POCS_aObj.CLim             = [63 65];
 
 handles.TC_KESA_SM_iFFT_Smoothing_aObj                  = axes();
 handles.TC_KESA_SM_iFFT_Smoothing_aObj.Parent           = handles.TC_KESA_Shift_Maps_uObj;
@@ -75,7 +75,7 @@ handles.TC_KESA_SM_iFFT_Smoothing_aObj.Title.FontName   = 'Times New Roman';
 %handles.TC_KESA_SM_iFFT_Smoothing_aObj.Colormap         = gray;
 colormap(handles.TC_KESA_SM_iFFT_Smoothing_aObj,'Gray');
 handles.TC_KESA_SM_iFFT_Smoothing_aObj.CLimMode         = 'manual';
-handles.TC_KESA_SM_iFFT_Smoothing_aObj.CLim             = [63 66];
+handles.TC_KESA_SM_iFFT_Smoothing_aObj.CLim             = [63 65];
 
 handles.TC_KESA_SM_Status_tObj                      = uicontrol();
 handles.TC_KESA_SM_Status_tObj.Parent               = handles.TC_KESA_fObj;
