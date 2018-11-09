@@ -12,6 +12,7 @@ handles.PRF_Para_Obj.Paras_tObj.Position            = [515 400 100 30];
 handles.PRF_Para_Obj.Paras_tObj.String              = 'Parameters:';
 handles.PRF_Para_Obj.Paras_tObj.FontSize            = 12;
 handles.PRF_Para_Obj.Paras_tObj.HorizontalAlignment = 'left';
+handles.PRF_Para_Obj.Paras_tObj.FontName            = 'Segoe UI';
 
 
 handles.PRF_Para_Obj.Paras_TxT_tObj                     = uicontrol();
