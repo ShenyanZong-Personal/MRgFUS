@@ -16,6 +16,7 @@ TC_KESA_Run_Shift_Cwdg(hObject);
 TC_KESA_Coil_Control_Cwdg(hObject);
 TC_KESA_TimePhase_Control_Cwdg(hObject);
 TC_KESA_OnPoint_Cwdg(hObject);
+TC_KESA_WinLevel_Cwdg(hObject);
 
 end
 

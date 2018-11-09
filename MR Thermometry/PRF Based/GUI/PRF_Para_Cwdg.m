@@ -12,7 +12,7 @@ handles.PRF_Para_Obj.Paras_tObj.Position            = [515 400 100 30];
 handles.PRF_Para_Obj.Paras_tObj.String              = 'Parameters:';
 handles.PRF_Para_Obj.Paras_tObj.FontSize            = 12;
 handles.PRF_Para_Obj.Paras_tObj.HorizontalAlignment = 'left';
-handles.PRF_Para_Obj.Paras_tObj.FontName            = 'Segoe UI';
+handles.PRF_Para_Obj.Paras_tObj.FontName            = 'MS Sans Serif';
 
 
 handles.PRF_Para_Obj.Paras_TxT_tObj                     = uicontrol();
@@ -23,6 +23,7 @@ handles.PRF_Para_Obj.Paras_TxT_tObj.FontSize            = 10;
 handles.PRF_Para_Obj.Paras_TxT_tObj.Units               = 'pixels';
 handles.PRF_Para_Obj.Paras_TxT_tObj.Position            = [515 200 120 200];
 handles.PRF_Para_Obj.Paras_TxT_tObj.HorizontalAlignment = 'left';
+handles.PRF_Para_Obj.Paras_TxT_tObj.FontName            = 'MS Sans Serif';
 
 guidata(hObject,handles);
 

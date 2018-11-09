@@ -12,6 +12,7 @@ handles.PRF_Combined_Option_rObj.Position           = [515 110 120 20];
 handles.PRF_Combined_Option_rObj.String             = 'Combined';
 handles.PRF_Combined_Option_rObj.FontSize           = 12;
 handles.PRF_Combined_Option_rObj.BackgroundColor    = 'w';
+handles.PRF_Combined_Option_rObj.FontName           = 'MS Sans Serif';
 
 guidata(hObject,handles);
 

@@ -4,6 +4,9 @@ function [  ] = TC_KESA_Run_Shift_Cwdg( hObject,~ )
 
 handles = guidata(hObject);
 
+CLim                                = [63 65];
+handles.TC_KESA_fObj.UserData.CLim  = CLim;
+
 handles.TC_KESA_Run_Shift_pObj          = uicontrol();
 handles.TC_KESA_Run_Shift_pObj.Parent   = handles.TC_KESA_fObj;
 handles.TC_KESA_Run_Shift_pObj.Style    = 'pushbutton';
@@ -37,7 +40,7 @@ handles.TC_KESA_SM_iFFT_aObj.Title.FontName   = 'Times New Roman';
 %handles.TC_KESA_SM_iFFT_aObj.Colormap         = gray;
 colormap(handles.TC_KESA_SM_iFFT_aObj,'Gray');
 handles.TC_KESA_SM_iFFT_aObj.CLimMode         = 'manual';
-handles.TC_KESA_SM_iFFT_aObj.CLim             = [63 65];
+handles.TC_KESA_SM_iFFT_aObj.CLim             = CLim;
 
 handles.TC_KESA_SM_POCS_aObj                  = axes();
 handles.TC_KESA_SM_POCS_aObj.Parent           = handles.TC_KESA_Shift_Maps_uObj;
@@ -56,7 +59,7 @@ handles.TC_KESA_SM_POCS_aObj.Title.FontName   = 'Times New Roman';
 %handles.TC_KESA_SM_POCS_aObj.Colormap         = gray;
 colormap(handles.TC_KESA_SM_POCS_aObj,'Gray');
 handles.TC_KESA_SM_POCS_aObj.CLimMode         = 'manual';
-handles.TC_KESA_SM_POCS_aObj.CLim             = [63 65];
+handles.TC_KESA_SM_POCS_aObj.CLim             = CLim;
 
 handles.TC_KESA_SM_iFFT_Smoothing_aObj                  = axes();
 handles.TC_KESA_SM_iFFT_Smoothing_aObj.Parent           = handles.TC_KESA_Shift_Maps_uObj;
@@ -75,7 +78,7 @@ handles.TC_KESA_SM_iFFT_Smoothing_aObj.Title.FontName   = 'Times New Roman';
 %handles.TC_KESA_SM_iFFT_Smoothing_aObj.Colormap         = gray;
 colormap(handles.TC_KESA_SM_iFFT_Smoothing_aObj,'Gray');
 handles.TC_KESA_SM_iFFT_Smoothing_aObj.CLimMode         = 'manual';
-handles.TC_KESA_SM_iFFT_Smoothing_aObj.CLim             = [63 65];
+handles.TC_KESA_SM_iFFT_Smoothing_aObj.CLim             = CLim;
 
 handles.TC_KESA_SM_Status_tObj                      = uicontrol();
 handles.TC_KESA_SM_Status_tObj.Parent               = handles.TC_KESA_fObj;
@@ -239,6 +242,10 @@ else
    handles.TC_KESA_iTimePhase_Info_tObj.String  = num2str(NTimePhase);
    handles.TC_KESA_fObj.WindowScrollWheelFcn    = @TC_KESA_iTimePhase_Control_Callback;
    handles.SvsT_OnPoint_pObj.Enable             = 'on';
+   
+   CLim                                         = handles.TC_KESA_fObj.UserData.CLim;
+   handles.TC_KESA_Shift_Win_Up_tObj.String     = num2str( CLim(2) );
+   handles.TC_KESA_Shift_Win_Down_tObj.String   = num2str( CLim(1) );
    
 end
 

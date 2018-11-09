@@ -4,7 +4,7 @@ function [ ] = PRF_Color_Bar_Cwdg( hObject,~ )
 
 handles = guidata(hObject);
 
-handles.PRF_Color_Bar_cObj              = colorbar();
+handles.PRF_Color_Bar_cObj              =   colorbar();
 handles.PRF_Color_Bar_cObj.Parent       =   handles.PRF_Sets_uObj;
 handles.PRF_Color_Bar_cObj.Location     =   'manual';
 handles.PRF_Color_Bar_cObj.Units        =   'pixels';
@@ -14,6 +14,7 @@ handles.PRF_Color_Bar_cObj.Ticks        =   handles.PRF_TMaps_Holder_aObj.CLim;
 handles.PRF_Color_Bar_cObj.Label.String      = 'Temperature';
 handles.PRF_Color_Bar_cObj.Label.FontSize    = 12;
 handles.PRF_Color_Bar_cObj.Label.Position    = [1 10];
+handles.PRF_Color_Bar_cObj.Label.FontName    = 'MS Sans Serif';
 
 guidata(hObject,handles);
 

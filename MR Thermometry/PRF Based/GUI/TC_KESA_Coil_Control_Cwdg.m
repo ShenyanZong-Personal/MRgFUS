@@ -12,6 +12,7 @@ handles.TC_KESA_iCoil_Left_pObj.Position    = [700 570 20 25];
 handles.TC_KESA_iCoil_Left_pObj.FontSize    = 12;
 handles.TC_KESA_iCoil_Left_pObj.String      = '<';
 handles.TC_KESA_iCoil_Left_pObj.Callback    = @TC_KESA_iCoil_Left_Callback;
+handles.TC_KESA_iCoil_Left_pObj.FontName    = 'MS Sans Serif';
 
 handles.TC_KESA_iCoil_Info_tObj             = uicontrol();
 handles.TC_KESA_iCoil_Info_tObj.Parent      = handles.TC_KESA_fObj;
@@ -30,6 +31,7 @@ handles.TC_KESA_iCoil_Right_pObj.Position    = [750 570 20 25];
 handles.TC_KESA_iCoil_Right_pObj.FontSize    = 12;
 handles.TC_KESA_iCoil_Right_pObj.String      = '>';
 handles.TC_KESA_iCoil_Right_pObj.Callback    = @TC_KESA_iCoil_Right_Callback;
+handles.TC_KESA_iCoil_Right_pObj.FontName    = 'MS Sans Serif';
 
 
 guidata(hObject,handles);

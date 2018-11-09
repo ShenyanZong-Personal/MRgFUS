@@ -18,6 +18,7 @@ if strcmp(PhaseEncodingDirection,'COL')
     handles.PRF_Encoding_Orient_Obj.Phase_Encoding_TxT_tObj.Position     = [-25 140];
     handles.PRF_Encoding_Orient_Obj.Phase_Encoding_TxT_tObj.Rotation     = 90;
     handles.PRF_Encoding_Orient_Obj.Phase_Encoding_TxT_tObj.FontSize     = 12;
+    handles.PRF_Encoding_Orient_Obj.Phase_Encoding_TxT_tObj.FontName     = 'MS Sans Serif';
     
     handles.PRF_Encoding_Orient_Obj.Freq_Encoding_aObj           = annotation(handles.PRF_Sets_uObj,'doublearrow');
     handles.PRF_Encoding_Orient_Obj.Freq_Encoding_aObj.Units     = 'pixels';
@@ -28,6 +29,7 @@ if strcmp(PhaseEncodingDirection,'COL')
     handles.PRF_Encoding_Orient_Obj.Freq_Encoding_TxT_tObj.Units     = 'pixels';
     handles.PRF_Encoding_Orient_Obj.Freq_Encoding_TxT_tObj.Position  = [120 -20];
     handles.PRF_Encoding_Orient_Obj.Freq_Encoding_TxT_tObj.FontSize  = 12;
+    handles.PRF_Encoding_Orient_Obj.Freq_Encoding_TxT_tObj.FontName  = 'MS Sans Serif';
     
 elseif strcmp(PhaseEncodingDirection,'ROW')
     
@@ -41,6 +43,7 @@ elseif strcmp(PhaseEncodingDirection,'ROW')
     handles.PRF_Encoding_Orient_Obj.Freq_Encoding_TxT_tObj.Position   = [-25 125];
     handles.PRF_Encoding_Orient_Obj.Freq_Encoding_TxT_tObj.Rotation   = 90;
     handles.PRF_Encoding_Orient_Obj.Freq_Encoding_TxT_tObj.FontSize   = 12;
+    handles.PRF_Encoidng_Orient_Obj.Freq_Encoding_TxT_tObj.FontName   = 'MS Sans Serif';
     
     handles.PRF_Encoding_Orient_Obj.Phase_Encoding_aObj             = annotation(handles.PRF_Sets_uObj,'doublearrow');
     handles.PRF_Encoding_Orient_Obj.Phase_Encoding_aObj.Units       = 'pixels';
@@ -51,6 +54,7 @@ elseif strcmp(PhaseEncodingDirection,'ROW')
     handles.PRF_Encoding_Orient_Obj.Phase_Encoding_TxT_tObj.Units       = 'pixels';
     handles.PRF_Encoding_Orient_Obj.Phase_Encoding_TxT_tObj.Position    = [135 -20];
     handles.PRF_Encoding_Orient_Obj.Phase_Encoding_TxT_tObj.FontSize    = 12;
+    handles.PRF_Encoding_Orient_Obj.Phase_Encoding_TxT_tObj.FontName    = 'MS Sans Serif';
 end
 
 guidata(hObject,handles);
