@@ -14,7 +14,7 @@ handles.PRF_Color_Bar_cObj.Ticks        =   handles.PRF_TMaps_Holder_aObj.CLim;
 handles.PRF_Color_Bar_cObj.Label.String      = 'Temperature';
 handles.PRF_Color_Bar_cObj.Label.FontSize    = 12;
 handles.PRF_Color_Bar_cObj.Label.Position    = [1 10];
-handles.PRF_Color_Bar_cObj.Label.FontName    = 'MS Sans Serif';
+handles.PRF_Color_Bar_cObj.Label.FontName    = 'Segoe UI';
 
 guidata(hObject,handles);
 
