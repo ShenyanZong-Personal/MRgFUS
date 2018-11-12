@@ -41,6 +41,27 @@ else
             DSets       = load('result.mat');
             imgs_cplx   = DSets.fisp;
             Headers     = Header_ReWrite_result(DSets.psd_info);
+            
+        elseif strcmp(filename,'autoshim.mat')
+            BW_DSets    = load('BW.mat');
+            BW          = BW_DSets.BW;
+            BW_Index    = 1;
+            DSets       = load('autoshim.mat');
+            
+            if BW_Index == 1
+                imgs_cplx   = DSets.result1;
+                Headers     = Header_ReWrite_AutoShim( BW(BW_Index) );
+            elseif BW_Index == 2
+                imgs_cplx   = DSets.result2;
+                Headers     = Header_ReWrite_AutoShim( BW(BW_Index) );
+            elseif BW_Index == 3
+                imgs_cplx   = DSets.result3;
+                Headers     = Header_ReWrite_AutoShim( BW(BW_Index) );
+            elseif BW_Index == 4
+                imgs_cplx   = DSets.result4;
+                Headers     = Header_ReWrite_AutoShim( BW(BW_Index) );
+            end
+           
 
         end
         
@@ -48,11 +69,11 @@ else
 
         
     elseif strcmp(file_med,'MRDC')
-        ncoils = 8;
-        files = dir(pathname);
-        nfiles = numel(files)-2;
-        ntfrs = nfiles/((ncoils+1)*3);
-        [row,col,nslices] = size(dicomread([pathname filename]));
+        ncoils              = 8;
+        files               = dir(pathname);
+        nfiles              = numel(files)-2;
+        ntfrs               = nfiles/((ncoils+1)*3);
+        [row,col,nslices]   = size(dicomread([pathname filename]));
         
         imgs_cplx = zeros(row,col,nslices,ncoils,ntfrs);
         for itemporalphase = 1:ntfrs
@@ -157,6 +178,34 @@ function [ Headers ] = Header_ReWrite_result(psd_info)
     Headers.NumberOfSlice           =   psd_info.Nsl;
     Headers.CoilName                =   'unknown';
     Headers.NumberOfCoil            =   psd_info.numrecv;
+    Headers.PhaseEncodingDirection  =   'ROW';
+    Headers.SoftwareVersion         =   'unknown';
+
+end
+
+function [ Headers ] = Header_ReWrite_AutoShim( BW_Current )
+
+    Headers.InstitutionName         =   'BWH Data';
+    Headers.B0                      =   3;
+    Headers.TR                      =   'unknown';
+    Headers.TE                      =   10;
+    Headers.Gama                    =   42.576;
+    Headers.SliceThickness          =   'unknown';
+    Headers.Spacing                 =   'unknown';
+    Headers.Row                     =   128;
+    Headers.Column                  =   128;
+    Headers.FlipAngle               =   'unknown';
+    Headers.PatientPosition         =   'unknown';
+    Headers.FOV                     =   'unknown';
+    Headers.AcquisitionMatrix       =   'unknown';
+    Headers.PixelBW                 =   (BW_Current*10^3)/128;
+    Headers.FrequencySampling       =   'unknown';
+    Headers.PhaseSampling           =   'unknown';
+    Headers.TemporalPhase           =   40;
+    Headers.ImagesAcquisition       =   'unknown';
+    Headers.NumberOfSlice           =   1;
+    Headers.CoilName                =   'unknown';
+    Headers.NumberOfCoil            =   8;
     Headers.PhaseEncodingDirection  =   'ROW';
     Headers.SoftwareVersion         =   'unknown';
 

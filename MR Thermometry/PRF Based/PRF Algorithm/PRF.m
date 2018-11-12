@@ -7,11 +7,11 @@ handles     = guidata(hObject);
 Maps_Cplx   = handles.PRF_fObj.UserData.Maps_Cplx;
 Headers     = handles.PRF_fObj.UserData.Headers;
 
-Row     = Headers.Row;
-Col     = Headers.Column;
-NSlice  = Headers.NumberOfSlice;
-NCoil   = Headers.NumberOfCoil;
-NTimePhase   = Headers.TemporalPhase;
+Row             = Headers.Row;
+Col             = Headers.Column;
+NSlice          = Headers.NumberOfSlice;
+NCoil           = Headers.NumberOfCoil;
+NTimePhase      = Headers.TemporalPhase;
 
 gama    = Headers.Gama*(10^6);
 alpha   = 0.01e-6;
@@ -44,8 +44,8 @@ else
         end
     
     
-        TMap_Combined                       = Phase_Shift_Combined./(gama*alpha*B0*TE*2*pi);
-        TMaps_Combined(:,:,:,1,iTimePhase)    = TMap_Combined;
+        TMap_Combined                           = Phase_Shift_Combined./(gama*alpha*B0*TE*2*pi);
+        TMaps_Combined(:,:,:,1,iTimePhase)      = TMap_Combined;
     
         TMap_Coil                       = Phase_Shift_Coil./(gama*alpha*B0*TE*2*pi);
         TMaps_Coil(:,:,:,:,iTimePhase)  = TMap_Coil;

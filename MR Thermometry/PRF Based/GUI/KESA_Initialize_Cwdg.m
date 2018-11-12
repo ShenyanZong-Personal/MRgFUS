@@ -28,7 +28,7 @@ Slice_Current       = handles.PRF_fObj.UserData.Slice_Current;
 Coil_Current        = handles.PRF_fObj.UserData.Coil_Current;
 
 Maps_Cplx           = handles.PRF_fObj.UserData.Maps_Cplx;
-TMaps_Current       = handles.PRF_fObj.UserData.TMaps_Current;
+TMaps_Current       = handles.PRF_fObj.UserData.TMaps_Coil;
 
 TMap_Current        = TMaps_Current(:,:,Slice_Current,Coil_Current,TimePhase_Current);
 Map_Cplx_Current    = Maps_Cplx(:,:,Slice_Current,Coil_Current,TimePhase_Current);

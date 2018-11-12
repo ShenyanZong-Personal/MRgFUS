@@ -8,7 +8,7 @@ handles.PRF_Sets_uObj            =   uipanel();
 
 handles.PRF_Sets_uObj.Parent     =   handles.PRF_fObj;
 handles.PRF_Sets_uObj.Units      =   'pixel';
-handles.PRF_Sets_uObj.Position   =   [5 50 700 500];
+handles.PRF_Sets_uObj.Position   =   [5 50 700 530];
 
 guidata(hObject,handles);
 
@@ -22,6 +22,7 @@ PRF_Slice_Control_Cwdg(hObject);
 PRF_Combined_Option_Cwdg(hObject);
 PRF_Coil_Control_Cwdg(hObject);
 PRF_InStep_Cwdg(hObject);
+PRF_Maps_Type_Cwdg(hObject);
 
 end
 

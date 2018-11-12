@@ -38,6 +38,7 @@ else
     handles.PRF_Open_uObj.Enable            = 'off';
     handles.KESA_Initialize_pObj.Enable     = 'off';
     handles.TC_KESA_Initialize_pObj.Enable  = 'off';
+    handles.Maps_Type_Popupmenu_pObj.Enable = 'off';
     
     handles.PRF_TMaps_Holder_aObj.XLim = [0.50 Headers.Column+0.50];
     handles.PRF_TMaps_Holder_aObj.YLim = [0.50 Headers.Row+0.50];
@@ -77,7 +78,8 @@ else
             TMaps_Current = TMaps_Combined;
     end
     
-    handles.PRF_fObj.UserData.TMaps_Current     = TMaps_Current;
+    Maps_Current                                = TMaps_Current;
+    handles.PRF_fObj.UserData.Maps_Current      = Maps_Current;
     
     for iSlice = 1:NSlice
         
@@ -90,8 +92,8 @@ else
             for iTimePhase = 1:NTimePhase
                 
                 handles.PRF_Time_Phase_Index_Obj.Time_Phase_TxT_tObj.String     = [num2str(iTimePhase) '/' num2str(NTimePhase)];
-                TMap_Current                                                    = TMaps_Current(:,:,iSlice,iCoil,iTimePhase);
-                handles.PRF_TMap_iObj.CData                                     = TMap_Current;
+                Map_Current                                                     = Maps_Current(:,:,iSlice,iCoil,iTimePhase);
+                handles.PRF_TMap_iObj.CData                                     = Map_Current;
                 pause(0.1);
                 
             end
@@ -112,6 +114,7 @@ else
     handles.KESA_Initialize_pObj.Enable     = 'on';
     handles.TC_KESA_Initialize_pObj.Enable  = 'on';
     handles.PRF_OnPoints_TVST_pObj.Enable   = 'on';
+    handles.Maps_Type_Popupmenu_pObj.Enable = 'on';
     
 end
 
@@ -129,7 +132,7 @@ handles = guidata(hObject);
 
 TimePhase           = handles.PRF_fObj.UserData.Headers.TemporalPhase;
 TimePhase_Current   = handles.PRF_fObj.UserData.TimePhase_Current;
-TMaps_Current       = handles.PRF_fObj.UserData.TMaps_Current;
+Maps_Current        = handles.PRF_fObj.UserData.Maps_Current;
 Slice_Current       = handles.PRF_fObj.UserData.Slice_Current;
 Coil_Current        = handles.PRF_fObj.UserData.Coil_Current;
 
@@ -138,8 +141,8 @@ if TimePhase_Current < TimePhase && ...
     
     TimePhase_Current                           = TimePhase_Current +1;
     handles.PRF_fObj.UserData.TimePhase_Current = TimePhase_Current;
-    TMap_Current                                = TMaps_Current(:,:,Slice_Current,Coil_Current,TimePhase_Current);
-    handles.PRF_TMap_iObj.CData                 = TMap_Current;
+    Map_Current                                 = Maps_Current(:,:,Slice_Current,Coil_Current,TimePhase_Current);
+    handles.PRF_TMap_iObj.CData                 = Map_Current;
     
     handles.PRF_Time_Phase_Index_Obj.Time_Phase_TxT_tObj.String ...
                                                 = [num2str(TimePhase_Current) '/' num2str(TimePhase)];
@@ -149,8 +152,8 @@ elseif TimePhase_Current > 1 && ...
     
     TimePhase_Current                           = TimePhase_Current -1;
     handles.PRF_fObj.UserData.TimePhase_Current = TimePhase_Current;
-    TMap_Current                                = TMaps_Current(:,:,Slice_Current,Coil_Current,TimePhase_Current);
-    handles.PRF_TMap_iObj.CData                 = TMap_Current;
+    Map_Current                                 = Maps_Current(:,:,Slice_Current,Coil_Current,TimePhase_Current);
+    handles.PRF_TMap_iObj.CData                 = Map_Current;
     
     handles.PRF_Time_Phase_Index_Obj.Time_Phase_TxT_tObj.String ...
                                                 = [num2str(TimePhase_Current) '/' num2str(TimePhase)];
@@ -172,7 +175,7 @@ Coil_Current        = handles.PRF_fObj.UserData.Coil_Current;
 NCoil               = handles.PRF_fObj.UserData.Headers.NumberOfCoil;
 Slice_Current       = handles.PRF_fObj.UserData.Slice_Current;
 TimePhase_Current   = handles.PRF_fObj.UserData.TimePhase_Current;
-TMaps_Current       = handles.PRF_fObj.UserData.TMaps_Current;
+Maps_Current        = handles.PRF_fObj.UserData.Maps_Current;
 
 if Coil_Current > 1 
     
@@ -181,8 +184,8 @@ if Coil_Current > 1
     handles.PRF_Coil_Control_Obj.iCoil_TxT_tObj.String ...
                                             = [num2str(Coil_Current) '/' num2str(NCoil)];
     
-    TMap_Current                = TMaps_Current(:,:,Slice_Current,Coil_Current,TimePhase_Current);    
-    handles.PRF_TMap_iObj.CData = TMap_Current;
+    Map_Current                 = Maps_Current(:,:,Slice_Current,Coil_Current,TimePhase_Current);    
+    handles.PRF_TMap_iObj.CData = Map_Current;
 
 end
 
@@ -199,7 +202,7 @@ Coil_Current        = handles.PRF_fObj.UserData.Coil_Current;
 NCoil               = handles.PRF_fObj.UserData.Headers.NumberOfCoil;
 Slice_Current       = handles.PRF_fObj.UserData.Slice_Current;
 TimePhase_Current   = handles.PRF_fObj.UserData.TimePhase_Current;
-TMaps_Current       = handles.PRF_fObj.UserData.TMaps_Current; 
+Maps_Current        = handles.PRF_fObj.UserData.Maps_Current; 
 
 if Coil_Current < NCoil
 
@@ -208,8 +211,8 @@ if Coil_Current < NCoil
     handles.PRF_Coil_Control_Obj.iCoil_TxT_tObj.String ...
                                             = [num2str(Coil_Current) '/' num2str(NCoil)];
     
-    TMap_Current                = TMaps_Current(:,:,Slice_Current,Coil_Current,TimePhase_Current);
-    handles.PRF_TMap_iObj.CData = TMap_Current;
+    Map_Current                 = Maps_Current(:,:,Slice_Current,Coil_Current,TimePhase_Current);
+    handles.PRF_TMap_iObj.CData = Map_Current;
     
 end
 

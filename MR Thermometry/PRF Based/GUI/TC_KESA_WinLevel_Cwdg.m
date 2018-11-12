@@ -150,9 +150,9 @@ else
         CLim_Lower  = CLim_Lower -1;
         CLim        = [CLim_Lower CLim_Upper];
         
-        handles.TC_KESA_SM_iFFT_aObj.CLim       = CLim;
-        handles.TC_KESA_SM_POCS_aObj.CLim       = CLim;
-        handles.TC_KESA_SM_iFFT_Smoothing.CLim  = CLim;
+        handles.TC_KESA_SM_iFFT_aObj.CLim           = CLim;
+        handles.TC_KESA_SM_POCS_aObj.CLim           = CLim;
+        handles.TC_KESA_SM_iFFT_Smoothing_aObj.CLim = CLim;
         
         handles.TC_KESA_Shift_Win_Down_tObj.String  = num2str(CLim_Lower);
         handles.TC_KESA_fObj.UserData.CLim          = CLim;
@@ -181,9 +181,9 @@ else
         CLim_Lower  = CLim_Lower +1;
         CLim        = [CLim_Lower CLim_Upper];
         
-        handles.TC_KESA_SM_iFFT_aObj.CLim       = CLim;
-        handles.TC_KESA_SM_POCS_aObj.CLim       = CLim;
-        handles.TC_KESA_SM_iFFT_Smoothing.CLim  = CLim;
+        handles.TC_KESA_SM_iFFT_aObj.CLim           = CLim;
+        handles.TC_KESA_SM_POCS_aObj.CLim           = CLim;
+        handles.TC_KESA_SM_iFFT_Smoothing_aObj.CLim = CLim;
         
         handles.TC_KESA_Shift_Win_Down_tObj.String  = num2str(CLim_Lower);
         handles.TC_KESA_fObj.UserData.CLim          = CLim;
