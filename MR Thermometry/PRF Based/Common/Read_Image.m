@@ -45,6 +45,7 @@ else
         elseif strcmp(filename,'autoshim.mat')
             BW_DSets    = load('BW.mat');
             BW          = BW_DSets.BW;
+            
             BW_Index    = 1;
             DSets       = load('autoshim.mat');
             
@@ -62,6 +63,26 @@ else
                 Headers     = Header_ReWrite_AutoShim( BW(BW_Index) );
             end
            
+        elseif strcmp(filename,'badshim.mat')
+            BW_DSets    = load('BW.mat');
+            BW          = BW_DSets.BW;
+            
+            BW_Index    = 1;
+            DSets       = load('badshim.mat');
+            
+            if BW_Index == 1
+                imgs_cplx   = DSets.result1_bad;
+                Headers     = Header_ReWrite_Bad( BW(BW_Index) );
+            elseif BW_Index == 2
+                imgs_cplx   = DSets.result2_bad;
+                Headers     = Header_ReWrite_Bad( BW(BW_Index) );
+            elseif BW_Index == 3
+                imgs_cplx   = DSets.result3_bad;
+                Headers     = Header_ReWrite_Bad( BW(BW_Index) );
+            elseif BW_Index == 4
+                imgs_cplx   = DSets.result4_bad;
+                Headers     = Header_ReWrite_Bad( BW(BW_Index) );
+            end
 
         end
         
@@ -210,3 +231,33 @@ function [ Headers ] = Header_ReWrite_AutoShim( BW_Current )
     Headers.SoftwareVersion         =   'unknown';
 
 end
+
+
+function [ Headers ] = Header_ReWrite_Bad( BW_Current )
+
+    Headers.InstitutionName         =   'BWH Data';
+    Headers.B0                      =   3;
+    Headers.TR                      =   'unknown';
+    Headers.TE                      =   10;
+    Headers.Gama                    =   42.576;
+    Headers.SliceThickness          =   'unknown';
+    Headers.Spacing                 =   'unknown';
+    Headers.Row                     =   128;
+    Headers.Column                  =   128;
+    Headers.FlipAngle               =   'unknown';
+    Headers.PatientPosition         =   'unknown';
+    Headers.FOV                     =   'unknown';
+    Headers.AcquisitionMatrix       =   'unknown';
+    Headers.PixelBW                 =   (BW_Current*10^3)/128;
+    Headers.FrequencySampling       =   'unknown';
+    Headers.PhaseSampling           =   'unknown';
+    Headers.TemporalPhase           =   40;
+    Headers.ImagesAcquisition       =   'unknown';
+    Headers.NumberOfSlice           =   1;
+    Headers.CoilName                =   'unknown';
+    Headers.NumberOfCoil            =   8;
+    Headers.PhaseEncodingDirection  =   'ROW';
+    Headers.SoftwareVersion         =   'unknown';
+
+end
+

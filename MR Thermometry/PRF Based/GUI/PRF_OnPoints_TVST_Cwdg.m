@@ -70,11 +70,12 @@ else
     
 end
 
-
-
-
 guidata(hObject,handles);
 
-PRF_OnPoints_TVST_Plot_Cfig(handles.PRF_fObj.UserData);
+if isempty(Points_Info)
+    
+else
+    PRF_OnPoints_TVST_Plot_Cfig(handles.PRF_fObj.UserData);
+end
 
 end
