@@ -3,12 +3,13 @@ function [ Map_Shift ] = Drop_Determine( Maps_KESA )
 %   Map_KESA: [Row Column Nkxy]
 
 %[Row,Col,Nkxy]  = size(Maps_KESA);
-[Row,Col,~] = size(Maps_KESA);
+[Row,Col,Nkxy] = size(Maps_KESA);
 
 %P_Nkxy      = 1:1:Nkxy;
 %P_Nkxy_Q    = 1:0.01:Nkxy;
 
-Map_Shift = zeros(Row,Col);
+Map_Shift   = zeros(Row,Col);
+Ref_KESA    = (1+Nkxy)/2;
 
 for iRow = 1:Row
     for iCol = 1:Col
@@ -45,6 +46,8 @@ for iRow = 1:Row
         %Map_Shift(iRow,iCol)    = DropPoint;
     end
 end
+
+Map_Shift = Map_Shift - Ref_KESA;
 
 end
 

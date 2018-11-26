@@ -46,7 +46,7 @@ else
             BW_DSets    = load('BW.mat');
             BW          = BW_DSets.BW;
             
-            BW_Index    = 1;
+            BW_Index    = 4;
             DSets       = load('autoshim.mat');
             
             if BW_Index == 1
@@ -67,21 +67,21 @@ else
             BW_DSets    = load('BW.mat');
             BW          = BW_DSets.BW;
             
-            BW_Index    = 1;
+            BW_Index    = 4;
             DSets       = load('badshim.mat');
             
             if BW_Index == 1
                 imgs_cplx   = DSets.result1_bad;
-                Headers     = Header_ReWrite_Bad( BW(BW_Index) );
+                Headers     = Header_ReWrite_BadShim( BW(BW_Index) );
             elseif BW_Index == 2
                 imgs_cplx   = DSets.result2_bad;
-                Headers     = Header_ReWrite_Bad( BW(BW_Index) );
+                Headers     = Header_ReWrite_BadShim( BW(BW_Index) );
             elseif BW_Index == 3
                 imgs_cplx   = DSets.result3_bad;
-                Headers     = Header_ReWrite_Bad( BW(BW_Index) );
+                Headers     = Header_ReWrite_BadShim( BW(BW_Index) );
             elseif BW_Index == 4
                 imgs_cplx   = DSets.result4_bad;
-                Headers     = Header_ReWrite_Bad( BW(BW_Index) );
+                Headers     = Header_ReWrite_BadShim( BW(BW_Index) );
             end
 
         end
@@ -220,8 +220,8 @@ function [ Headers ] = Header_ReWrite_AutoShim( BW_Current )
     Headers.FOV                     =   'unknown';
     Headers.AcquisitionMatrix       =   'unknown';
     Headers.PixelBW                 =   (BW_Current*10^3)/128;
-    Headers.FrequencySampling       =   'unknown';
-    Headers.PhaseSampling           =   'unknown';
+    Headers.FrequencySampling       =   128;
+    Headers.PhaseSampling           =   128;
     Headers.TemporalPhase           =   40;
     Headers.ImagesAcquisition       =   'unknown';
     Headers.NumberOfSlice           =   1;
@@ -233,7 +233,7 @@ function [ Headers ] = Header_ReWrite_AutoShim( BW_Current )
 end
 
 
-function [ Headers ] = Header_ReWrite_Bad( BW_Current )
+function [ Headers ] = Header_ReWrite_BadShim( BW_Current )
 
     Headers.InstitutionName         =   'BWH Data';
     Headers.B0                      =   3;
@@ -249,8 +249,8 @@ function [ Headers ] = Header_ReWrite_Bad( BW_Current )
     Headers.FOV                     =   'unknown';
     Headers.AcquisitionMatrix       =   'unknown';
     Headers.PixelBW                 =   (BW_Current*10^3)/128;
-    Headers.FrequencySampling       =   'unknown';
-    Headers.PhaseSampling           =   'unknown';
+    Headers.FrequencySampling       =   128;
+    Headers.PhaseSampling           =   128;
     Headers.TemporalPhase           =   40;
     Headers.ImagesAcquisition       =   'unknown';
     Headers.NumberOfSlice           =   1;

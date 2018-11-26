@@ -4,7 +4,7 @@ function [  ] = TC_KESA_Run_Shift_Cwdg( hObject,~ )
 
 handles = guidata(hObject);
 
-CLim                                = [63 65];
+CLim                                = [-20 20];
 handles.TC_KESA_fObj.UserData.CLim  = CLim;
 
 handles.TC_KESA_Run_Shift_pObj          = uicontrol();
@@ -97,7 +97,10 @@ function [ ] = TC_KESA_Run_Shift_Callback(hObject,~)
 
 handles = guidata(hObject);
 
-Maps_KESA = handles.TC_KESA_fObj.UserData.Maps_KESA;
+Maps_KESA   = handles.TC_KESA_fObj.UserData.Maps_KESA;
+%Ref_KESA    = ( 1+handles.TC_KESA_fObj.UserData.Headers.PhaseSampling )/2;
+
+%handles.TC_KESA_fObj.UserData.Ref_KESA  = Ref_KESA;
 
 Maps_Shift.Maps_Shift_iFFT              = 0;
 Maps_Shift.Maps_Shift_POCS              = 0;

@@ -112,7 +112,7 @@ else
     CLim_Lower  = CLim(1);
     
     PE_Number   = handles.TC_KESA_fObj.UserData.Headers.PhaseSampling;
-    if CLim_Upper < PE_Number
+    if CLim_Upper < ceil(PE_Number/2)
         
         CLim_Upper  = CLim_Upper +1;
         CLim        = [CLim_Lower CLim_Upper];
@@ -145,7 +145,8 @@ else
     CLim_Upper  = CLim(2);
     CLim_Lower  = CLim(1);
     
-    if CLim_Lower > 1
+    PE_Number   = handles.TC_KESA_fObj.UserData.Headers.PhaseSampling;
+    if CLim_Lower > -ceil(PE_Number/2)
         
         CLim_Lower  = CLim_Lower -1;
         CLim        = [CLim_Lower CLim_Upper];

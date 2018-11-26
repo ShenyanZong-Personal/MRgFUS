@@ -4,7 +4,7 @@ function [  ] = PRF_OnPoints_TVST_Plot_Cfig( UserData )
 
 handles.PRF_OnPoints_TVST_Plot_fObj             = figure();
 handles.PRF_OnPoints_TVST_Plot_fObj.UserData    = UserData;
-handles.PRF_OnPoints_TVST_Plot_fObj.Name        = 'Plot KESA Curve';
+handles.PRF_OnPoints_TVST_Plot_fObj.Name        = 'Temperature vs Time';
 handles.PRF_OnPoints_TVST_Plot_fObj.NumberTitle = 'off';
 handles.PRF_OnPoints_TVST_Plot_fObj.Position    = [150 150 1000 600];
 
