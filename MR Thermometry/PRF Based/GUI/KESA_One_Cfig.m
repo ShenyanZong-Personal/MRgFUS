@@ -17,6 +17,7 @@ KESA_Maps_Selected_Sets_Cgro(hObject);
 KESA_OnPoints_Cwdg(hObject);
 %KESA_Partial_Reco_Sets_Cgro(hObject);
 %KESA_Map_Shift_Sets_Cgro(hObject);
+KESA_Run_Shift_Cwdg(hObject);
 
 end
 

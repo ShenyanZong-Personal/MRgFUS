@@ -46,7 +46,7 @@ else
             BW_DSets    = load('BW.mat');
             BW          = BW_DSets.BW;
             
-            BW_Index    = 4;
+            BW_Index    = 1;
             DSets       = load('autoshim.mat');
             
             if BW_Index == 1
@@ -67,7 +67,7 @@ else
             BW_DSets    = load('BW.mat');
             BW          = BW_DSets.BW;
             
-            BW_Index    = 4;
+            BW_Index    = 1;
             DSets       = load('badshim.mat');
             
             if BW_Index == 1
