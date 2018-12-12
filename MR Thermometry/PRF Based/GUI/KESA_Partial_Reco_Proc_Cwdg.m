@@ -202,7 +202,7 @@ Maps_KESA.Maps_KESA_iFFT_Smoothing  = 0;
 if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_rObj.Value
     
     handles.KESA_Partial_Reco_Steps_Info_tObj.String = 'Doing Direct Fourier Reconstruction ... !';
-    handles.KESA_Run_Shift_pObj
+    %handles.KESA_Run_Shift_pObj
     
     switch PhaseEncodingDirection
         

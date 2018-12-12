@@ -146,7 +146,8 @@ end
 end
 
 
-
+% ------ Notices ------ %
+% PhaseEncodingDirection: 'ROW' --- Horizontal; 'COL' --- Vertical %
 
 function [ Headers ] = Header_ReWrite(Infos)
 

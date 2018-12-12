@@ -27,6 +27,7 @@ handles.Shift_Map_iFFT_aObj.CLim            = [-20 20];
 
 handles.Shift_Map_iFFT_aObj.Title.String    = 'Shift Map, iFFT';
 handles.Shift_Map_iFFT_aObj.Title.FontName  = 'Times New Roman';
+colormap(handles.Shift_Map_iFFT_aObj,'Jet');
 
 handles.Shift_Map_POCS_aObj                 = axes();
 handles.Shift_Map_POCS_aObj.Parent          = handles.KESA_Shift_Maps_Show_fObj;
@@ -45,6 +46,7 @@ handles.Shift_Map_POCS_aObj.CLim            = [-20 20];
 
 handles.Shift_Map_POCS_aObj.Title.String    = 'Shift Map, POCS';
 handles.Shift_Map_POCS_aObj.Title.FontName  = 'Times New Roman';
+colormap(handles.Shift_Map_POCS_aObj,'Jet');
 
 handles.Shift_Map_iFFT_Smoothing_aObj                   = axes();
 handles.Shift_Map_iFFT_Smoothing_aObj.Parent            = handles.KESA_Shift_Maps_Show_fObj;
