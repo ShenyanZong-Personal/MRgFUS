@@ -83,7 +83,57 @@ else
                 imgs_cplx   = DSets.result4_bad;
                 Headers     = Header_ReWrite_BadShim( BW(BW_Index) );
             end
-
+            
+        elseif strcmp(filename,'ForShenyan.mat')
+            
+            BW      = [5.81 8.33 15.63 50 125];
+            DSets   = load('ForShenyan.mat');
+            
+            BW_Index    = 4;
+            Shim_Status = 'Good';
+            if (BW_Index == 1) && strcmp(Shim_Status,'Good')
+                
+                imgs_cplx   = DSets.data1;
+                Headers     = Header_ReWrite_Mei( BW_Index,BW(BW_Index),Shim_Status,DSets.hdr1 );
+                
+            elseif (BW_Index == 2) && strcmp(Shim_Status,'Good')
+                
+                imgs_cplx   = DSets.data2;
+                Headers     = Header_ReWrite_Mei( BW_Index,BW(BW_Index),Shim_Status,DSets.hdr2 );
+                
+            elseif (BW_Index == 3) && strcmp(Shim_Status,'Good')
+                
+                imgs_cplx   = DSets.data3;
+                Headers     = Header_ReWrite_Mei( BW_Index,BW(BW_Index),Shim_Status,DSets.hdr3 );
+                
+            elseif (BW_Index == 4) && strcmp(Shim_Status,'Good')
+                
+                imgs_cplx   = DSets.data4;
+                Headers     = Header_ReWrite_Mei( BW_Index,BW(BW_Index),Shim_Status,DSets.hdr4 );
+                
+            elseif (BW_Index == 5) && strcmp(Shim_Status,'Good')
+                imgs_cplx   = DSets.data5;
+                Headers     = Header_ReWrite_Mei( BW_Index,BW(BW_Index),Shim_Status,DSets.hdr5 );
+                
+            elseif (BW_Index == 1) && strcmp(Shim_Status,'Bad')
+                imgs_cplx   = DSets.data1_bad;
+                Headers     = Header_ReWrite_Mei( BW_Index,BW(BW_Index),Shim_Status,DSets.hdr1_bad);
+                
+            elseif (BW_Index == 2) && strcmp(Shim_Status,'Bad')
+                imgs_cplx   = DSets.data2_bad;
+                Headers     = Header_ReWrite_Mei( BW_Index,BW(BW_Index),Shim_Status,DSets.hdr2_bad);
+                
+            elseif (BW_Index == 3) && strcmp(Shim_Status,'Bad')
+                imgs_cplx   = DSets.data3_bad;
+                Headers     = Header_ReWrite_Mei( BW_Index,BW(BW_Index),Shim_Status,DSets.hdr3_bad);
+            
+            elseif (BW_Index == 4) && strcmp(Shim_Status,'Bad')
+                imgs_cplx   = DSets.data4_bad;
+                Headers     = Header_ReWrite_Mei( BW_Index,BW(BW_Index),Shim_Status,DSets.hdr4_bad);
+            elseif (BW_Index == 5) && strcmp(Shim_Status,'Bad')
+                imgs_cplx   = DSets.data5_bad;
+                Headers     = Header_ReWrite_Mei( BW_Index,BW(BW_Index),Shim_Status,DSets.hdr5_bad);
+            end
         end
         
     elseif strcmp(file_pre,'I')
@@ -262,3 +312,31 @@ function [ Headers ] = Header_ReWrite_BadShim( BW_Current )
 
 end
 
+function [ Headers ] = Header_ReWrite_Mei( BW_Index,BW_Value,Shim_Status,hdr )
+
+    Headers.InstitutionName         =   'Good and Bad Shim Data';
+    Headers.B0                      =   hdr.B0;
+    Headers.TR                      =   hdr.TR/1000;
+    Headers.TE                      =   hdr.TE/1000;
+    Headers.Gama                    =   42.576;
+    Headers.SliceThickness          =   hdr.slthick*10;
+    Headers.Spacing                 =   hdr.scanspacing;
+    Headers.Row                     =   hdr.N_ver;
+    Headers.Column                  =   hdr.N_hor;
+    Headers.FlipAngle               =   'unknown';
+    Headers.PatientPosition         =   'unknown';
+    Headers.FOV                     =   'unknown';
+    Headers.AcquisitionMatrix       =   'unknown';
+    Headers.PixelBW                 =   (2*BW_Value*1000)/128;
+    Headers.FrequencySampling       =   'unknown';
+    Headers.PhaseSampling           =   'unknown';
+    Headers.TemporalPhase           =   hdr.nph;
+    Headers.ImagesAcquisition       =   'unknown';
+    Headers.NumberOfSlice           =   hdr.N_sl;
+    Headers.CoilName                =   'unknown';
+    Headers.NumberOfCoil            =   hdr.ncoils;
+    Headers.PhaseEncodingDirection  =   'COL';
+    Headers.SoftwareVersion         =   'unknown';
+    Headers.Others                  =   ['BW' num2str(BW_Index) ':' ' ' num2str(BW_Value) ' ; ' Shim_Status ' ' 'Shim'];
+
+end
