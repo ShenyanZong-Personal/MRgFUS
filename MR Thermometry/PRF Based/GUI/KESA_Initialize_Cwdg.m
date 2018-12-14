@@ -83,6 +83,7 @@ handles.KESA_Initialize_pObj.UserData.Map_Cplx_Current      = Map_Cplx_Current;
 handles.KESA_Initialize_pObj.UserData.Slice_Current         = Slice_Current;
 handles.KESA_Initialize_pObj.UserData.Coil_Current          = Coil_Current;
 handles.KESA_Initialize_pObj.UserData.TimePhase_Current     = TimePhase_Current;
+handles.KESA_Initialize_pObj.UserData.RC_For_KESA           = handles.PRF_fObj.UserData.RC_For_KESA;
 
 %fprintf('>> Data Delievery! Done! ...\n');
 

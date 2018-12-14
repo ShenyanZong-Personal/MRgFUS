@@ -191,7 +191,7 @@ Map_Cplx                = handles.KESA_Two_fObj.UserData.Map_Cplx_Current;
 kspace                  = fftshift( fft2(Map_Cplx) ) ;
 Row                     = Headers.Row;
 Col                     = Headers.Column;
-PhaseEncodingDirection  = Headers.PhaseEncodingDirection;
+RC_For_KESA             = handles.KESA_Two_fObj.UserData.RC_For_KESA;
 
 Maps_KESA.Maps_KESA_iFFT            = 0;
 Maps_KESA.Maps_KESA_POCS            = 0;
@@ -204,7 +204,7 @@ if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_rObj.Value
     handles.KESA_Partial_Reco_Steps_Info_tObj.String = 'Doing Direct Fourier Reconstruction ... !';
     %handles.KESA_Run_Shift_pObj
     
-    switch PhaseEncodingDirection
+    switch RC_For_KESA
         
         case 'ROW'
             Nkxy            = Col;
@@ -264,7 +264,7 @@ if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_POCS_rObj.Value
     
     handles.KESA_Partial_Reco_Steps_Info_tObj.String = 'Doing Iterative POCS Reconstruction ... !';
     
-    switch PhaseEncodingDirection
+    switch RC_For_KESA
         
         case 'ROW'
             Nkxy            = Col;
@@ -276,7 +276,7 @@ if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_POCS_rObj.Value
                 kspace_Partial(:,1:iNkxy)   = 0+0i;
                 
                 [kspace_Partial_Reco,Magni_Map_Reco] = ...
-                        POCS(kspace,iNkxy,PhaseEncodingDirection,Col,4);
+                        POCS(kspace,iNkxy,RC_For_KESA,Col,4);
                     
                 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_iObj.CData        = abs( kspace_Partial );
                 pause(0.1);
@@ -301,7 +301,7 @@ if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_POCS_rObj.Value
                 kspace_Partial(1:iNkxy,:)   = 0+0i;
                 
                 [kspace_Partial_Reco,Magni_Map_Reco] = ...
-                        POCS(kspace,iNkxy,PhaseEncodingDirection,Row,4);
+                        POCS(kspace,iNkxy,RC_For_KESA,Row,4);
                 
                 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_iObj.CData        = abs( kspace_Partial );
                 pause(0.1);
@@ -324,7 +324,7 @@ if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_Smoothing_rObj.Value
     
     handles.KESA_Partial_Reco_Steps_Info_tObj.String = 'Doing Fourier Reconstruction With Smoothing Window ... !';
     
-    switch PhaseEncodingDirection
+    switch RC_For_KESA
         
         case 'ROW'
             Nkxy                        = Col;
@@ -337,7 +337,7 @@ if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_Smoothing_rObj.Value
                 
                 wid = 16;
                 [kspace_Partial_Reco,Magni_Map_Reco] = ...
-                        Partial_Fourier_iFFT_Smoothing(kspace,iNkxy,PhaseEncodingDirection,Col,wid,Row);
+                        Partial_Fourier_iFFT_Smoothing(kspace,iNkxy,RC_For_KESA,Col,wid,Row);
                 
                 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_iObj.CData        = abs( kspace_Partial );
                 pause(0.1);
@@ -363,7 +363,7 @@ if handles.KESA_Partial_Reco_Proc_Obj.Partial_Reco_iFFT_Smoothing_rObj.Value
                 
                 wid = 16;
                 [kspace_Partial_Reco,Magni_Map_Reco] = ...
-                        Partial_Fourier_iFFT_Smoothing(kspace,iNkxy,PhaseEncodingDirection,Row,wid,Col);
+                        Partial_Fourier_iFFT_Smoothing(kspace,iNkxy,RC_For_KESA,Row,wid,Col);
                 
                 handles.KESA_Partial_Reco_Proc_Obj.kspace_Partial_iObj.CData        = abs( kspace_Partial );
                 pause(0.1);

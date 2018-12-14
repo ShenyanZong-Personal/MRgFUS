@@ -35,10 +35,11 @@ if Maps_Cplx == 0
     
 else
     
-    handles.PRF_Open_uObj.Enable            = 'off';
-    handles.KESA_Initialize_pObj.Enable     = 'off';
-    handles.TC_KESA_Initialize_pObj.Enable  = 'off';
-    handles.Maps_Type_Popupmenu_pObj.Enable = 'off';
+    handles.PRF_Open_uObj.Enable                    = 'off';
+    handles.KESA_Initialize_pObj.Enable             = 'off';
+    handles.TC_KESA_Initialize_pObj.Enable          = 'off';
+    handles.Maps_Type_Popupmenu_pObj.Enable         = 'off';
+    handles.KESA_Orientation_Select_pObj.Enable     = 'off';
     
     handles.PRF_TMaps_Holder_aObj.XLim = [0.50 Headers.Column+0.50];
     handles.PRF_TMaps_Holder_aObj.YLim = [0.50 Headers.Row+0.50];
@@ -111,11 +112,21 @@ else
     
     handles.PRF_InStep_tObj.String = 'Temperature Maps Are Ready ... !';
     
-    handles.PRF_Open_uObj.Enable            = 'on';
-    handles.KESA_Initialize_pObj.Enable     = 'on';
-    handles.TC_KESA_Initialize_pObj.Enable  = 'on';
-    handles.PRF_OnPoints_TVST_pObj.Enable   = 'on';
-    handles.Maps_Type_Popupmenu_pObj.Enable = 'on';
+    handles.PRF_Open_uObj.Enable                    = 'on';
+    handles.KESA_Initialize_pObj.Enable             = 'on';
+    handles.TC_KESA_Initialize_pObj.Enable          = 'on';
+    handles.PRF_OnPoints_TVST_pObj.Enable           = 'on';
+    handles.Maps_Type_Popupmenu_pObj.Enable         = 'on';
+    handles.KESA_Orientation_Select_pObj.Enable     = 'on';
+    
+    Headers = handles.PRF_fObj.UserData.Headers;
+    if strcmp(Headers.PhaseEncodingDirection,'ROW')
+        RC_For_KESA = 'ROW';
+    elseif strcmp(Headers.PhaseEncodingDirection,'COL')
+        RC_For_KESA = 'COL';
+    end
+    
+    handles.PRF_fObj.UserData.RC_For_KESA = RC_For_KESA;
     
 end
 

@@ -89,7 +89,7 @@ else
             BW      = [5.81 8.33 15.63 50 125];
             DSets   = load('ForShenyan.mat');
             
-            BW_Index    = 4;
+            BW_Index    = 1;
             Shim_Status = 'Good';
             if (BW_Index == 1) && strcmp(Shim_Status,'Good')
                 
@@ -335,7 +335,7 @@ function [ Headers ] = Header_ReWrite_Mei( BW_Index,BW_Value,Shim_Status,hdr )
     Headers.NumberOfSlice           =   hdr.N_sl;
     Headers.CoilName                =   'unknown';
     Headers.NumberOfCoil            =   hdr.ncoils;
-    Headers.PhaseEncodingDirection  =   'COL';
+    Headers.PhaseEncodingDirection  =   'ROW';
     Headers.SoftwareVersion         =   'unknown';
     Headers.Others                  =   ['BW' num2str(BW_Index) ':' ' ' num2str(BW_Value) ' ; ' Shim_Status ' ' 'Shim'];
 
