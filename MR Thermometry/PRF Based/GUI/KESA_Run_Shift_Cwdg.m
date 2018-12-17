@@ -12,7 +12,7 @@ handles.KESA_Run_Shift_pObj.Position    = [810 290 100 30];
 %handles.KESA_Run_Shift_pObj.Position    = [370 310 80 40];
 handles.KESA_Run_Shift_pObj.String      = 'R-Shift';
 handles.KESA_Run_Shift_pObj.FontSize    = 12;
-handles.kESA_Run_Shift_pObj.FontName    = 'Times New Roman';
+handles.KESA_Run_Shift_pObj.FontName    = 'Times New Roman';
 handles.KESA_Run_Shift_pObj.Callback    = @Get_Shift_Map_Callback;
 handles.KESA_Run_Shift_pObj.Enable      = 'off';
 

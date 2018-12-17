@@ -72,7 +72,41 @@ handles.Shift_Map_ColorBar_cObj.Parent      = handles.KESA_Shift_Maps_Show_fObj;
 handles.Shift_Map_ColorBar_cObj.Location    = 'manual';
 handles.Shift_Map_ColorBar_cObj.Units       = 'pixels';
 handles.Shift_Map_ColorBar_cObj.Position    = [940 100 20 300];
+handles.Shift_Map_ColorBar_cObj.TicksMode   = 'manual';
 handles.Shift_Map_ColorBar_cObj.Ticks       = [-20 20];
+
+handles.CLim_Up_Control_sObj            = uicontrol();
+handles.CLim_Up_Control_sObj.Parent     = handles.KESA_Shift_Maps_Show_fObj;
+handles.CLim_Up_Control_sObj.Style      = 'slider';
+handles.CLim_Up_Control_sObj.Units      = 'pixels';
+handles.CLim_Up_Control_sObj.Position   = [985 387 20 26];
+handles.CLim_Up_Control_sObj.Value      = 20;
+handles.CLim_Up_Control_sObj.Min        = -40;
+handles.CLim_Up_Control_sObj.Max        = 40;
+handles.CLim_Up_Control_sObj.SliderStep = [1/80 1/80];
+handles.CLim_Up_Control_sObj.Callback   = @CLim_Up_Control_Callback;
+
+handles.CLim_Down_Control_sObj              = uicontrol();
+handles.CLim_Down_Control_sObj.Parent       = handles.KESA_Shift_Maps_Show_fObj;
+handles.CLim_Down_Control_sObj.Style        = 'slider';
+handles.CLim_Down_Control_sObj.Units        = 'pixels';
+handles.CLim_Down_Control_sObj.Position     = [985 87 20 26];
+handles.CLim_Down_Control_sObj.Value        = -20;
+handles.CLim_Down_Control_sObj.Min          = -40;
+handles.CLim_Down_Control_sObj.Max          = 40;
+handles.CLim_Down_Control_sObj.SliderStep   = [1/80 1/80];
+handles.CLim_Down_Control_sObj.Callback     = @CLim_Down_Control_Callback;
+
+handles.ShiftPixel_To_ShiftTE_pObj          = uicontrol();
+handles.ShiftPixel_To_ShiftTE_pObj.Parent   = handles.KESA_Shift_Maps_Show_fObj;
+handles.ShiftPixel_To_ShiftTE_pObj.Style    = 'pushbutton';
+handles.ShiftPixel_To_ShiftTE_pObj.Units    = 'pixels';
+handles.ShiftPixel_To_ShiftTE_pObj.Position = [1030 370 80 30];
+handles.ShiftPixel_To_ShiftTE_pObj.String   = 'Dk to DTE';
+handles.ShiftPixel_To_ShiftTE_pObj.FontSize = 12;
+handles.ShiftPixel_To_ShiftTE_pObj.FontName = 'Times New Roman';
+handles.ShiftPixel_To_ShiftTE_pObj.Callback = @Convert_To_Delta_TE;
+
 
 Shift_Maps = UserData.Maps_Shift;
 
@@ -132,3 +166,81 @@ guidata(hObject,handles);
 %}
 end
 
+
+function CLim_Up_Control_Callback( hObject,~ )
+
+handles = guidata(hObject);
+
+CLim_Up_Current     = handles.CLim_Up_Control_sObj.Value;
+CLim_Down_Current   = handles.CLim_Down_Control_sObj.Value;
+
+if CLim_Up_Current > CLim_Down_Current
+    
+    CLim_Current = [CLim_Down_Current CLim_Up_Current];
+    
+    handles.Shift_Map_ColorBar_cObj.Ticks       = CLim_Current;
+    handles.Shift_Map_iFFT_aObj.CLim            = CLim_Current;
+    handles.Shift_Map_POCS_aObj.CLim            = CLim_Current;
+    handles.Shift_Map_iFFT_Smoothing_aObj.CLim  = CLim_Current;
+    
+else
+    
+    CLim_Current = [CLim_Down_Current (CLim_Down_Current+1)];
+    
+    handles.CLim_Up_Control_sObj.Value          = CLim_Down_Current +1;
+    handles.Shift_Map_ColorBar_cObj.Ticks       = CLim_Current;
+    handles.Shift_Map_iFFT_aObj.CLim            = CLim_Current;
+    handles.Shift_Map_POCS_aObj.CLim            = CLim_Current;
+    handles.Shift_Map_iFFT_Smoothing_aObj.CLim  = CLim_Current;
+
+end
+
+guidata(hObject,handles);
+
+end
+
+function CLim_Down_Control_Callback( hObject,~ )
+
+handles = guidata(hObject);
+
+CLim_Up_Current     = handles.CLim_Up_Control_sObj.Value;
+CLim_Down_Current   = handles.CLim_Down_Control_sObj.Value;
+
+if CLim_Down_Current < CLim_Up_Current
+    
+    CLim_Current = [CLim_Down_Current CLim_Up_Current];
+    
+    handles.Shift_Map_ColorBar_cObj.Ticks       = CLim_Current;
+    handles.Shift_Map_iFFT_aObj.CLim            = CLim_Current;
+    handles.Shift_Map_POCS_aObj.CLim            = CLim_Current;
+    handles.Shift_Map_iFFT_Smoothing_aObj.CLim  = CLim_Current;
+    
+else
+    
+    CLim_Current = [(CLim_Down_Current-1) CLim_Up_Current];
+    
+    handles.CLim_Down_Control_sObj.Value        = CLim_Up_Current -1;
+    handles.Shift_Map_ColorBar_cObj.Ticks       = CLim_Current;
+    handles.Shift_Map_iFFT_aObj.CLim            = CLim_Current;
+    handles.Shift_Map_POCS_aObj.CLim            = CLim_Current;
+    handles.Shift_Map_iFFT_Smoothing_aObj.CLim  = CLim_Current;
+    
+end
+
+guidata(hObject,handles);
+
+end
+
+function Convert_To_Delta_TE( hObject,~ )
+
+handles = guidata(hObject);
+
+
+
+
+
+
+
+guidata(hObject,handles);
+
+end
