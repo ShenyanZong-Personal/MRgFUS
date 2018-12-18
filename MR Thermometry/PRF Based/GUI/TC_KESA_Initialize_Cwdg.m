@@ -29,8 +29,9 @@ Maps_Cplx   = handles.PRF_fObj.UserData.Maps_Cplx;
 Headers     = handles.PRF_fObj.UserData.Headers;
 %TMaps       = handles.MR_PRF.UserData.TMaps;
 
-handles.TC_KESA_Initialize_pObj.UserData.Maps_Cplx  = Maps_Cplx;
-handles.TC_KESA_Initialize_pObj.UserData.Headers    = Headers;
+handles.TC_KESA_Initialize_pObj.UserData.Maps_Cplx      = Maps_Cplx;
+handles.TC_KESA_Initialize_pObj.UserData.Headers        = Headers;
+handles.TC_KESA_Initialize_pObj.UserData.RC_For_KESA    = handles.PRF_fObj.UserData.RC_For_KESA;
 %handles.TC_KESA_pObj.UserData.TMaps      = TMaps;
 
 %fprintf('>> All Data Delievery is Ready ...\n');

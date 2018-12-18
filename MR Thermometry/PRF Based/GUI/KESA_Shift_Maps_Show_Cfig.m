@@ -235,11 +235,12 @@ function Convert_To_Delta_TE( hObject,~ )
 
 handles = guidata(hObject);
 
+%KESA_Delta_TE_Maps_Show_Cfig( handles. );
 
+UserData.Headers    = handles.KESA_Shift_Maps_Show_fObj.UserData.Headers;
+UserData.Shift_Maps = handles.KESA_Shift_Maps_Show_fObj.UserData.Maps_Shift;
 
-
-
-
+KESA_Delta_TE_Maps_Show_Cfig(UserData);
 
 guidata(hObject,handles);
 
