@@ -16,6 +16,8 @@ handles.PRF_Color_Bar_cObj.Label.FontSize    = 12;
 handles.PRF_Color_Bar_cObj.Label.Position    = [1 10];
 handles.PRF_Color_Bar_cObj.Label.FontName    = 'Segoe UI';
 
+colormap(handles.PRF_Color_Bar_cObj,'Jet');
+
 guidata(hObject,handles);
 
 end
