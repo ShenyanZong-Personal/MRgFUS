@@ -23,6 +23,7 @@ PRF_Combined_Option_Cwdg(hObject);
 PRF_Coil_Control_Cwdg(hObject);
 PRF_InStep_Cwdg(hObject);
 PRF_Maps_Type_Cwdg(hObject);
+PRF_Correction_Options_Cwdg(hObject);
 
 end
 
