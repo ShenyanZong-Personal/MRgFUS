@@ -81,13 +81,14 @@ handles = guidata(hObject);
 
 
 Maps_Cplx   = handles.TC_KESA_fObj.UserData.Maps_Cplx;
-Headers     = handles.TC_KESA_fObj.UserData.Headers;
+%Headers     = handles.TC_KESA_fObj.UserData.Headers;
 
 Maps_KESA.Maps_KESA_iFFT            = 0;
 Maps_KESA.Maps_KESA_POCS            = 0;
 Maps_KESA.Maps_KESA_iFFT_Smoothing  = 0;
 
-PhaseEncodingDirection              = Headers.PhaseEncodingDirection;
+%PhaseEncodingDirection              = Headers.PhaseEncodingDirection;
+RC_For_KESA                         = handles.TC_KESA_fObj.UserData.RC_For_KESA;
 [Row,Col,NSlice,NCoil,NTimePhase]   = size(Maps_Cplx);
 
 
@@ -99,7 +100,7 @@ if handles.TC_KESA_iFFT_rObj.Value
     pause(0.1);
     handles.TC_KESA_Run_Shift_pObj.Enable   = 'off';
     
-    switch PhaseEncodingDirection
+    switch RC_For_KESA %PhaseEncodingDirection
         
         case 'ROW'
             Nkxy            = Col;
@@ -177,7 +178,7 @@ if handles.TC_KESA_POCS_rObj.Value
     pause(0.1);
     handles.TC_KESA_Run_Shift_pObj.Enable   = 'off';
     
-    switch PhaseEncodingDirection
+    switch RC_For_KESA %PhaseEncodingDirection
         
         case 'ROW'
             Nkxy            = Col;
@@ -197,9 +198,12 @@ if handles.TC_KESA_POCS_rObj.Value
                 
                             %kspace_Partial              = kspace;
                             %kspace_Partial(:,1:iNkxy)   = 0+0i;
-                
+                            %{
                             [~,Magni_Map_Reco] = ...
                                 POCS(kspace,iNkxy,PhaseEncodingDirection,Col,4);
+                            %}
+                            [~,Magni_Map_Reco] = ...
+                                POCS(kspace,iNkxy,RC_For_KESA,Col,4);
                     
                 
                             Maps_KESA_POCS(:,:,iSlice,iCoil,iTimePhase,iNkxy)   = Magni_Map_Reco;
@@ -228,10 +232,12 @@ if handles.TC_KESA_POCS_rObj.Value
                 
                             %kspace_Partial              = kspace;
                             %kspace_Partial(1:iNkxy,:)   = 0+0i;
-                
+                            %{
                             [~,Magni_Map_Reco] = ...
                                 POCS(kspace,iNkxy,PhaseEncodingDirection,Row,4);
-                
+                            %}
+                            [~,Magni_Map_Reco] = ...
+                                POCS(kspace,iNkxy,RC_For_KESA,Row,4);
                 
                             Maps_KESA_POCS(:,:,iSlice,iCoil,iTimePhase,iNkxy)   = Magni_Map_Reco;
                         end
@@ -254,7 +260,7 @@ if handles.TC_KESA_iFFT_Smoothing_rObj.Value
    pause(0.1);
    handles.TC_KESA_Run_Shift_pObj.Enable    = 'off';
     
-    switch PhaseEncodingDirection
+    switch RC_For_KESA %PhaseEncodingDirection
         
         case 'ROW'
             Nkxy                        = Col;
@@ -276,9 +282,14 @@ if handles.TC_KESA_iFFT_Smoothing_rObj.Value
                             %kspace_Partial(:,1:iNkxy)   = 0+0i;
                 
                             wid = 16;
+                            %{
                             [~,Magni_Map_Reco] = ...
                                 Partial_Fourier_iFFT_Smoothing(kspace,iNkxy,PhaseEncodingDirection,Col,wid,Row);
+                            %}
+                            [~,Magni_Map_Reco] = ...
+                                Partial_Fourier_iFFT_Smoothing(kspace,iNkxy,RC_For_KESA,Col,wid,Row);
 
+                            
                             Maps_KESA_iFFT_Smoothing(:,:,iSlice,iCoil,iTimePhase,iNkxy) = Magni_Map_Reco;
                         end
                     end
@@ -307,9 +318,13 @@ if handles.TC_KESA_iFFT_Smoothing_rObj.Value
                             %kspace_Partial(1:iNkxy,:)   = 0+0i;
                 
                             wid = 16;
+                            %{
                             [~,Magni_Map_Reco] = ...
-                                Partial_Fourier_iFFT_Smoothing(kspace,iNkxy,PhaseEncodingDirection,Row,wid,Col);                
-                
+                                Partial_Fourier_iFFT_Smoothing(kspace,iNkxy,PhaseEncodingDirection,Row,wid,Col);
+                            %}
+                            [~,Magni_Map_Reco] = ...
+                                Partial_Fourier_iFFT_Smoothing(kspace,iNkxy,RC_For_KESA,Row,wid,Col);
+                            
                             Maps_KESA_iFFT_Smoothing(:,:,iSlice,iCoil,iTimePhase,iNkxy) = Magni_Map_Reco;
                         end
                     end

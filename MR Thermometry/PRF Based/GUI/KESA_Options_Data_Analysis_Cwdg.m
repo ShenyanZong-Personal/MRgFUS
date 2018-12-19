@@ -1,4 +1,4 @@
-function [  ] = Options_Data_Analysis_Cwdg( hObject,~ )
+function [  ] = KESA_Options_Data_Analysis_Cwdg( hObject,~ )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -22,7 +22,7 @@ handles.KESA_Orientation_Select_pObj.Position   = [170 420 150 30];
 handles.KESA_Orientation_Select_pObj.String     = {'Phase Encoding';'Frequency Encoding'};
 handles.KESA_Orientation_Select_pObj.FontSize   = 12;
 handles.KESA_Orientation_Select_pObj.FontName   = 'Times New Roman';
-handles.KESA_Orientation_Select_pObj.Callback   = @KESA_Orientation_Select;
+handles.KESA_Orientation_Select_pObj.Callback   = @KESA_Orientation_Select_Callback;
 handles.KESA_Orientation_Select_pObj.Enable     = 'off';
 
 
@@ -30,7 +30,7 @@ guidata(hObject,handles);
 
 end
 
-function [ ] = KESA_Orientation_Select( hObject,~ )
+function [ ] = KESA_Orientation_Select_Callback( hObject,~ )
 
 handles = guidata(hObject);
 Headers = handles.PRF_fObj.UserData.Headers;

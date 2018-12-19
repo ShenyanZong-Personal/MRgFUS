@@ -16,7 +16,7 @@ guidata(hObject,handles);
 KESA_Initialize_Cwdg(hObject);
 TC_KESA_Initialize_Cwdg(hObject);
 PRF_OnPoints_TVST_Cwdg(hObject);
-Options_Data_Analysis_Cwdg(hObject);
+KESA_Options_Data_Analysis_Cwdg(hObject);
 
 end
 
