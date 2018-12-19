@@ -11,7 +11,7 @@ handles.SvsT_OnPoint_pObj.Units     = 'pixels';
 handles.SvsT_OnPoint_pObj.FontSize  = 12;
 handles.SvsT_OnPoint_pObj.FontName  = 'Times New Roman';
 handles.SvsT_OnPoint_pObj.String    = 'ST on P';
-handles.SvsT_OnPoint_pObj.Position  = [1000 570 80 30];
+handles.SvsT_OnPoint_pObj.Position  = [1000 570 100 30];
 handles.SvsT_OnPoint_pObj.Enable    = 'off';
 handles.SvsT_OnPoint_pObj.Callback  = @Plot_OnPoint_VS_Time_Callback;
 

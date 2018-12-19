@@ -17,6 +17,7 @@ TC_KESA_Coil_Control_Cwdg(hObject);
 TC_KESA_TimePhase_Control_Cwdg(hObject);
 TC_KESA_OnPoint_Cwdg(hObject);
 TC_KESA_WinLevel_Cwdg(hObject);
+TC_KESA_Convert_To_Delta_TE_Cwdg(hObject);
 
 end
 

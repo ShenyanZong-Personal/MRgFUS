@@ -114,6 +114,8 @@ else
     
 end
 
+guidata(hObject,handles);
+
 end
 
 %function 
