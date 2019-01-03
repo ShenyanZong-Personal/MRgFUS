@@ -32,19 +32,19 @@ handle_PRF  = findobj('Name','PRF-based Thermometry');
 if isscalar(Maps_Shift.Maps_Shift_iFFT)
     Maps_Delta_TE_iFFT = 0;
 else
-    Maps_Delta_TE_iFFT = Maps_Shift.Maps_Shift_iFFT.*Double_BW;    
+    Maps_Delta_TE_iFFT = Maps_Shift.Maps_Shift_iFFT.*( 1/Double_BW );   %--- Unit: s ---% 
 end
 
 if isscalar(Maps_Shift.Maps_Shift_POCS)
     Maps_Delta_TE_POCS = 0;
 else
-    Maps_Delta_TE_POCS = Maps_Shift.Maps_Shift_POCS.*Double_BW;
+    Maps_Delta_TE_POCS = Maps_Shift.Maps_Shift_POCS.*( 1/Double_BW );   %--- Unit: s ---%
 end
 
 if isscalar(Maps_Shift.Maps_Shift_iFFT_Smoothing)
     Maps_Delta_TE_iFFT_Smoothing = 0;
 else
-    Maps_Delta_TE_iFFT_Smoothing = Maps_Shift.Maps_Shift_iFFT_Smoothing.*Double_BW;
+    Maps_Delta_TE_iFFT_Smoothing = Maps_Shift.Maps_Shift_iFFT_Smoothing.*( 1/Double_BW );   %--- Unit: s ---%
 end
 
 handles.TC_KESA_fObj.UserData.Maps_Delta_TE.Maps_Delta_TE_iFFT              = Maps_Delta_TE_iFFT;

@@ -11,7 +11,7 @@ handles.PRF_Delta_TE_Correction_cObj.Units      = 'pixels';
 handles.PRF_Delta_TE_Correction_cObj.Position   = [10 2 100 30];
 handles.PRF_Delta_TE_Correction_cObj.String     = 'TE Calibr';
 handles.PRF_Delta_TE_Correction_cObj.FontSize   = 12;
-handles.PRF_Delta_TE_Correction_cObj.FontName   = 'Arial';
+handles.PRF_Delta_TE_Correction_cObj.FontName   = 'New Times Roman';
 handles.PRF_Delta_TE_Correction_cObj.Callback   = @TE_Correction_Callback;
 
 
@@ -28,6 +28,9 @@ if isfield(handles.PRF_fObj.UserData,'Maps_Delta_TE')
     
     if handles.PRF_Delta_TE_Correction_cObj.Value == 1
         
+        TMaps_Coil_Corrected = PRF_Corrected( hObject,handles.PRF_fObj.UserData.Maps_Delta_TE.Maps_Delta_TE_iFFT_Smoothing);
+        handles.PRF_fObj.UserData.TMaps_Coil_Corrected = TMaps_Coil_Corrected;
+                
     end
     
 else

@@ -79,7 +79,7 @@ if isscalar(Shift_Maps.Map_Shift_iFFT)
     
 else 
     
-    Delta_TE_Map_iFFT = Shift_Maps.Map_Shift_iFFT.*( 1/Double_BW );
+    Delta_TE_Map_iFFT = Shift_Maps.Map_Shift_iFFT.*( 1/Double_BW );   %--- Unit: s ---%
     
     handles.Delta_TE_Map_iFFT_iObj                  = image();
     handles.Delta_TE_Map_iFFT_iObj.Parent           = handles.Delta_TE_Map_iFFT_aObj;
@@ -92,7 +92,7 @@ if isscalar(Shift_Maps.Map_Shift_POCS)
     
 else 
     
-    Delta_TE_Map_POCS = Shift_Maps.Map_Shift_POCS.*( 1/Double_BW );
+    Delta_TE_Map_POCS = Shift_Maps.Map_Shift_POCS.*( 1/Double_BW );   %--- Unit: s ---%
     
     handles.Delta_TE_Map_POCS_iObj                  = image();
     handles.Delta_TE_Map_POCS_iObj.Parent           = handles.Delta_TE_Map_POCS_aObj;
@@ -105,7 +105,7 @@ if isscalar(Shift_Maps.Map_Shift_iFFT_Smoothing)
     
 else 
     
-    Delta_TE_Map_iFFT_Smoothing = Shift_Maps.Map_Shift_iFFT_Smoothing.*( 1/Double_BW );
+    Delta_TE_Map_iFFT_Smoothing = Shift_Maps.Map_Shift_iFFT_Smoothing.*( 1/Double_BW );   %--- Unit: s ---%
     
     handles.Delta_TE_Map_iFFT_Smoothing_iObj                  = image();
     handles.Delta_TE_Map_iFFT_Smoothing_iObj.Parent           = handles.Delta_TE_Map_iFFT_Smoothing_aObj;
