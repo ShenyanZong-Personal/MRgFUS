@@ -14,8 +14,8 @@ handles.PRF_Combined_Option_rObj.FontSize           = 12;
 handles.PRF_Combined_Option_rObj.BackgroundColor    = 'w';
 handles.PRF_Combined_Option_rObj.FontName           = 'Segoe UI';
 
-handles.PRF_Combined_Option_rObj.Enable             = 'off';
-handles.PRF_Combined_Option_rObj.Visible            = 'off';
+%handles.PRF_Combined_Option_rObj.Enable             = 'off';
+%handles.PRF_Combined_Option_rObj.Visible            = 'off';
 
 guidata(hObject,handles);
 

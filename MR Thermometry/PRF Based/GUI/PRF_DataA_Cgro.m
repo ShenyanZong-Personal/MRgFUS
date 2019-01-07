@@ -17,6 +17,7 @@ KESA_Initialize_Cwdg(hObject);
 TC_KESA_Initialize_Cwdg(hObject);
 PRF_OnPoints_TVST_Cwdg(hObject);
 KESA_Options_Data_Analysis_Cwdg(hObject);
+PRF_Combined_Cwdg(hObject);
 
 end
 
