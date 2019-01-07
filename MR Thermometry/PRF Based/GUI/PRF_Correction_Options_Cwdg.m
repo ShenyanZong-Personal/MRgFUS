@@ -14,13 +14,11 @@ handles.PRF_Delta_TE_Correction_cObj.FontSize   = 12;
 handles.PRF_Delta_TE_Correction_cObj.FontName   = 'New Times Roman';
 handles.PRF_Delta_TE_Correction_cObj.Callback   = @TE_Correction_Callback;
 
-
-
 guidata(hObject,handles);
 
 end
 
-function TE_Correction_Callback( hObject,~ )
+function [ ] = TE_Correction_Callback( hObject,~ )
 
 handles = guidata(hObject);
 
@@ -28,15 +26,32 @@ if isfield(handles.PRF_fObj.UserData,'Maps_Delta_TE')
     
     if handles.PRF_Delta_TE_Correction_cObj.Value == 1
         
-        TMaps_Coil_Corrected = PRF_Corrected( hObject,handles.PRF_fObj.UserData.Maps_Delta_TE.Maps_Delta_TE_iFFT_Smoothing);
-        handles.PRF_fObj.UserData.TMaps_Coil_Corrected = TMaps_Coil_Corrected;
-                
+        if isempty( findobj('Name','PRF-TE Corrected') )
+            
+            TMaps_Coil_Corrected = PRF_Corrected( hObject,handles.PRF_fObj.UserData.Maps_Delta_TE.Maps_Delta_TE_iFFT_Smoothing);
+        
+            handles.PRF_fObj.UserData.TMaps_Coil_Corrected = TMaps_Coil_Corrected;
+        
+            PRF_Corrected_Cfig( handles.PRF_fObj.UserData );
+            
+        end
+        
+    elseif handles.PRF_Delta_TE_Correction_cObj.Value == 0
+        
+        if isempty( findobj('Name','PRF-TE Corrected') )
+            
+        else
+            
+            close( findobj('Name','PRF-TE Corrected') );
+            
+        end
+        
     end
     
 else
 
 end
     
-guidata(hObject);
+guidata(hObject,handles);
 
 end

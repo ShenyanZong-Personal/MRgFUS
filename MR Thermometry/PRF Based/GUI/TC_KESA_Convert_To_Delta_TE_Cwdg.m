@@ -22,12 +22,15 @@ function All_To_Delta_TE_Callback( hObject,~ )
 
 handles = guidata(hObject);
 
+handles.TC_KESA_Convert_To_Delta_TE_pObj.Enable = 'off';
+
 PixelBW     = handles.TC_KESA_fObj.UserData.Headers.PixelBW;
 N_Freq      = handles.TC_KESA_fObj.UserData.Headers.FrequencySampling;
 Double_BW   = PixelBW*N_Freq;
 
 Maps_Shift  = handles.TC_KESA_fObj.UserData.Maps_Shift;
-handle_PRF  = findobj('Name','PRF-based Thermometry');
+PRF_fObj    = findobj('Name','PRF-based Thermometry');
+handles_PRF = guidata(PRF_fObj);
 
 if isscalar(Maps_Shift.Maps_Shift_iFFT)
     Maps_Delta_TE_iFFT = 0;
@@ -52,8 +55,10 @@ handles.TC_KESA_fObj.UserData.Maps_Delta_TE.Maps_Delta_TE_POCS              = Ma
 handles.TC_KESA_fObj.UserData.Maps_Delta_TE.Maps_Delta_TE_iFFT_Smoothing    = Maps_Delta_TE_iFFT_Smoothing;
 
 
-handle_PRF.UserData.Maps_Delta_TE = handles.TC_KESA_fObj.UserData.Maps_Delta_TE;
-guidata(handle_PRF,handle_PRF);
+handles_PRF.PRF_fObj.UserData.Maps_Delta_TE = handles.TC_KESA_fObj.UserData.Maps_Delta_TE;
+guidata(PRF_fObj,handles_PRF);
+
+handles.TC_KESA_Convert_To_Delta_TE_pObj.Enable = 'on';
 
 guidata(hObject,handles);
 
