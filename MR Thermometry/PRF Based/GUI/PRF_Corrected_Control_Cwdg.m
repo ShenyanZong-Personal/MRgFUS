@@ -68,6 +68,16 @@ handles.PRF_Corrected_TVST_pObj.FontSize    = 12;
 handles.PRF_Corrected_TVST_pObj.String      = 'OnPoint';
 handles.PRF_Corrected_TVST_pObj.Callback    = @To_Plot_TVST_Callback;
 
+handles.PRF_Corrected_Combine_pObj          = uicontrol();
+handles.PRF_Corrected_Combine_pObj.Parent   = handles.PRF_Corrected_fObj;
+handles.PRF_Corrected_Combine_pObj.Style    = 'pushbutton';
+handles.PRF_Corrected_Combine_pObj.Units    = 'pixels';
+handles.PRF_Corrected_Combine_pObj.Position = [570 420 100 30];
+handles.PRF_Corrected_Combine_pObj.FontName = 'Times New Roman';
+handles.PRF_Corrected_Combine_pObj.FontSize = 12;
+handles.PRF_Corrected_Combine_pObj.String   = 'Combine';
+handles.PRF_Corrected_Combine_pObj.Callback = @PRF_Corrected_Combine_Callback;
+
 handles.PRF_Corrected_fObj.UserData.CSlice          = handles.PRF_Corrected_fObj.UserData.Headers.NumberOfSlice;
 handles.PRF_Corrected_fObj.UserData.CCoil           = handles.PRF_Corrected_fObj.UserData.Headers.NumberOfCoil;
 handles.PRF_Corrected_fObj.UserData.CTimePhase      = handles.PRF_Corrected_fObj.UserData.Headers.TemporalPhase;
@@ -168,4 +178,22 @@ guidata(hObject,handles);
 
 end
 
+function PRF_Corrected_Combine_Callback( hObject,~ )
 
+handles = guidata(hObject);
+
+if isfield(handles.PRF_Corrected_fObj.UserData,'TMaps_Coil_Corrected')
+    
+    TMaps_Corrected_Combined = PRF_Combine(handles.PRF_Corrected_fObj.UserData.TMaps_Coil_Corrected,handles.PRF_Corrected_fObj.UserData.WCoils);
+
+    handles.PRF_Corrected_fObj.UserData.TMaps_Corrected_Combined = TMaps_Corrected_Combined;
+    
+    PRF_Corrected_Combined_Show_Cfig( handles.PRF_Corrected_fObj.UserData );
+    
+else
+
+end
+
+guidata(hObject,handles);
+
+end

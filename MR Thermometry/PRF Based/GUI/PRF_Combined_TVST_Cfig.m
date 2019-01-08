@@ -4,7 +4,7 @@ function [ ] = PRF_Combined_TVST_Cfig( UserData )
 
 handles.PRF_OnPoints_Combined_TVST_fObj                = figure();
 handles.PRF_OnPoints_Combined_TVST_fObj.UserData       = UserData;
-handles.PRF_OnPoints_Combined_TVST_fObj.Name           = 'Temperature VS Time - TE Combined';
+handles.PRF_OnPoints_Combined_TVST_fObj.Name           = 'Temperature VS Time - Combined';
 handles.PRF_OnPoints_Combined_TVST_fObj.NumberTitle    = 'off';
 handles.PRF_OnPoints_Combined_TVST_fObj.Position       = [100 100 1000 600];
 
