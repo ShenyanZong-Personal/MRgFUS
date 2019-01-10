@@ -336,7 +336,7 @@ function [ Headers ] = Header_ReWrite_Mei( BW_Index,BW_Value,Shim_Status,hdr )
     Headers.NumberOfSlice           =   hdr.N_sl;
     Headers.CoilName                =   'unknown';
     Headers.NumberOfCoil            =   hdr.ncoils;
-    Headers.PhaseEncodingDirection  =   'ROW';
+    Headers.PhaseEncodingDirection  =   'COL';
     Headers.SoftwareVersion         =   'unknown';
     Headers.Others                  =   ['BW' num2str(BW_Index) ':' ' ' num2str(BW_Value) ' ; ' Shim_Status ' ' 'Shim'];
 
