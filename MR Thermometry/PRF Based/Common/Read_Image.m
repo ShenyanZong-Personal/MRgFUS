@@ -90,7 +90,8 @@ else
             DSets   = load('ForShenyan.mat');
             
             BW_Index    = 1;
-            Shim_Status = 'Good';
+            Shim_Status = 'Bad';
+            
             if (BW_Index == 1) && strcmp(Shim_Status,'Good')
                 
                 imgs_cplx   = DSets.data1;
