@@ -3,29 +3,31 @@ clear; close all;
 % --- Image Registration --- %
 % --- Demo: Non Rigid Registration --- %
 
-DataSet1 = load('TMap_For_Registration.mat');
+DataSet = load('Maps_Data.mat');
 
-TMap_GoodShim           = DataSet1.TMap_GoodShim; % Reference
-TMap_BadShim_Corrected  = DataSet1.TMap_BadShim_Corrected; % To Be Registered
+MMaps_GoodShim      = DataSet.MMaps_GoodShim;   % Reference
+MMap_GoodShim_Base  = MMaps_GoodShim(:,:,1,1,1);
 
-%figure; imshowpair(TMap_GoodShim,TMap_BadShim_Corrected,'montage');
-%figure; imshowpair(TMap_GoodShim,TMap_BadShim_Corrected);
+MMaps_Warp      = DataSet.MMaps_Warp;   % To Be Registered
+MMap_Warp_Base  = MMaps_Warp(:,:,1,1,1);
 
-%[D,moving_reg] = imregdemons(TMap_BadShim_Corrected,TMap_GoodShim,[100 100 1000 1000 1000],'AccumulatedFieldSmoothing',1.3,'PyramidLevels',5);
+infoReg = registerImages(MMap_Warp_Base,MMap_GoodShim_Base);
+DpField = infoReg.DisplacementField;
 
-%figure; imshowpair(TMap_GoodShim,moving_reg);
+TMaps_TEcorrected_Warp      = DataSet.TMaps_TEerror_Warp;
+[Nx,Ny,Nz,Nc,Np]            = size(TMaps_TEcorrected_Warp);
+TMaps_TEcorrected_Unwarp    = zeros(Nx,Ny,Nz,Nc,Np);
 
-%figure;imshow(moving_reg,[ ]);
+for iNz = 1:Nz
+    for iNc = 1:Nc
+        for iNp = 1:Np
+            
+            Current = TMaps_TEcorrected_Warp(:,:,iNz,iNc,iNp);
+            Unwarp  = imwarp(Current,DpField);
+            
+            TMaps_TEcorrected_Unwarp(:,:,iNz,iNc,iNp) = Unwarp;
+            
+        end
+    end
+end
 
-DataSet2 = load('Map_For_Registration.mat');
-
-Map_GoodShim    = DataSet2.Map_GoodShim;
-Map_BadShim     = DataSet2.Map_BadShim;
-
-Magnitude_GoodShim  = abs(Map_GoodShim);
-Magnitude_BadShim   = abs(Map_BadShim);
-
-Phase_GoodShim  = angle(Map_GoodShim);
-Phase_BadShim   = angle(Map_BadShim);
-
-[D,Magnitude_BadShim_Unwarp] = imregdemons(Magnitude_BadShim,Magnitude_GoodShim,[200 200 200 200 200],'AccumulatedFieldSmoothing',1.0,'PyramidLevels',5);
