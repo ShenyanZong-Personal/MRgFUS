@@ -89,7 +89,7 @@ else
             BW      = [5.81 8.33 15.63 50 125];
             DSets   = load('ForShenyan.mat');
             
-            BW_Index    = 1;
+            BW_Index    = 5;
             Shim_Status = 'Good';
             
             if (BW_Index == 1) && strcmp(Shim_Status,'Good')
