@@ -5,7 +5,7 @@ This file lists all files with specfied suffixs I want to ignore.
 *.dcm
 ---------------------------------------------
 *.mat
-!Maps_Data.mat
+!DataBase.mat
 ---------------------------------------------
 *.zip
 ---------------------------------------------
