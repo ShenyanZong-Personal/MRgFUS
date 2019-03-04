@@ -89,18 +89,31 @@ handles.RefSelection_gObj.BorderType    = 'none';
 
 handles.RefFirstOn          = uicontrol();
 handles.RefFirstOn.Parent   = handles.RefSelection_gObj;
+handles.RefFirstOn.Style    = 'togglebutton';
 handles.RefFirstOn.Units    = 'pixels';
 handles.RefFirstOn.Position = [0 70 100 30];
+handles.RefFirstOn.FontSize = 12;
+handles.RefFirstOn.FontName = 'New Times Roman';
+handles.RefFirstOn.Tag      = '1';
+handles.RefFirstOn.String   = 'Ref';
 
 handles.RefSecondOn             = uicontrol();
 handles.RefSecondOn.Parent      = handles.RefSelection_gObj;
+handles.RefSecondOn.Style       = 'togglebutton';
 handles.RefSecondOn.Units       = 'pixels';
-handles.RefSecondOn.Position    = [0 35 100 30]; 
+handles.RefSecondOn.Position    = [0 35 100 30];
+handles.RefSecondOn.FontSize    = 12;
+handles.RefSecondOn.FontName    = 'New Times Roman';
+handles.RefSecondOn.Tag         = '2';
 
 handles.RefThirdOn          = uicontrol();
 handles.RefThirdOn.Parent   = handles.RefSelection_gObj;
+handles.RefThirdOn.Style    = 'togglebutton';
 handles.RefThirdOn.Units    = 'pixels';
 handles.RefThirdOn.Position = [0 0 100 30];
+handles.RefThirdOn.FontSize = 12;
+handles.RefThirdOn.FontName = 'New Times Roman';
+handles.RefThirdOn.Tag      = '3';
 
 if size(OrderNs,2) == size(varargin,2)
     
@@ -149,6 +162,7 @@ if size(OrderNs,2) == size(varargin,2)
     handles.TMapsSelect_pObj.Callback               = @TMapsSelect_Callback;
     handles.PtCompare_pObj.Callback                 = @PtCompare_Callback;
     handles.FocusROI_pObj.Callback                  = @FocusROI_Callback;
+    handles.RefSelection_gObj.SelectionChangedFcn   = @SelectedRef_Callback;
     
 end
 
