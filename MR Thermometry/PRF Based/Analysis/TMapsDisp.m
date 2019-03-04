@@ -73,6 +73,35 @@ handles.PtCompare_pObj.Position = [430 310 200 30];
 handles.PtCompare_pObj.String   = 'PtCompare';
 handles.PtCompare_pObj.FontSize = 12;
 
+handles.FocusROI_pObj           = uicontrol();
+handles.FocusROI_pObj.Parent    = handles.TMapsDisp_fObj;
+handles.FocusROI_pObj.Style     = 'pushbutton';
+handles.FocusROI_pObj.Units     = 'pixels';
+handles.FocusROI_pObj.Position  = [430 270 200 30];
+handles.FocusROI_pObj.String    = 'ROI-Focus';
+handles.FocusROI_pObj.FontSize  = 12;
+
+handles.RefSelection_gObj               = uibuttongroup();
+handles.RefSelection_gObj.Parent        = handles.TMapsDisp_fObj;
+handles.RefSelection_gObj.Units         = 'pixels';
+handles.RefSelection_gObj.Position      = [640 355 100 100];
+handles.RefSelection_gObj.BorderType    = 'none';
+
+handles.RefFirstOn          = uicontrol();
+handles.RefFirstOn.Parent   = handles.RefSelection_gObj;
+handles.RefFirstOn.Units    = 'pixels';
+handles.RefFirstOn.Position = [0 70 100 30];
+
+handles.RefSecondOn             = uicontrol();
+handles.RefSecondOn.Parent      = handles.RefSelection_gObj;
+handles.RefSecondOn.Units       = 'pixels';
+handles.RefSecondOn.Position    = [0 35 100 30]; 
+
+handles.RefThirdOn          = uicontrol();
+handles.RefThirdOn.Parent   = handles.RefSelection_gObj;
+handles.RefThirdOn.Units    = 'pixels';
+handles.RefThirdOn.Position = [0 0 100 30];
+
 if size(OrderNs,2) == size(varargin,2)
     
     handles.TMapsSelect_pObj.String     = OrderNs;
@@ -119,6 +148,7 @@ if size(OrderNs,2) == size(varargin,2)
     handles.TMapsDisp_fObj.WindowScrollWheelFcn     = @TPhaseScroll_Callback;
     handles.TMapsSelect_pObj.Callback               = @TMapsSelect_Callback;
     handles.PtCompare_pObj.Callback                 = @PtCompare_Callback;
+    handles.FocusROI_pObj.Callback                  = @FocusROI_Callback;
     
 end
 
