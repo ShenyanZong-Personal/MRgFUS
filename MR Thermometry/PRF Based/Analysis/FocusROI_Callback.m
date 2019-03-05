@@ -22,7 +22,7 @@ if handles.TMapsFirst_tObj.Value == 1 && ...
     
     RecPosition = [MinPCol MinPRow MaxPCol-MinPCol+1 MaxPRow-MinPRow+1];
     
-    if ~isfield( handles,'FocusRecROI_rObj' )
+    if ~isfield( handles,'FocusRecROI_rObj' )   % --- Condition: No Focus Rectangle
             
         
         handles.FocusRecROI_rObj = rectangle(handles.TMapsHolder_aObj,'Position',RecPosition);
@@ -34,16 +34,16 @@ if handles.TMapsFirst_tObj.Value == 1 && ...
         % --- Crop Focus ROI ---
         
         NRef            = str2double( handles.RefSelection_gObj.SelectedObject.Tag );
-        Np              = handles.eVar.Np;
+        CTPhase         = handles.eVar.CTPhase;
         TMapsRef        = handles.eVar.TMapsD{NRef};
-        TMapRefCrop     = TMapsRef(MinPRow:MaxPRow,MinPCol:MaxPCol,1,1,Np);
+        TMapRefCrop     = TMapsRef(MinPRow:MaxPRow,MinPCol:MaxPCol,1,1,CTPhase);
         
         [NRowCrop,NColCrop] = size(TMapRefCrop);
         TMapRefCropT        = zeros(NRowCrop,NColCrop);
         for iRowCrop = 1:NRowCrop
             for iColCrop = 1:NColCrop
                 
-                if TMapRefCorp(iRowCrop,iColCrop) >= 2 % --- Focus Threshold
+                if TMapRefCrop(iRowCrop,iColCrop) >= 2 % --- Focus Threshold
                     
                     TMapRefCropT(iRowCrop,iColCrop) = TMapRefCrop(iRowCrop,iColCrop);
                     
@@ -63,7 +63,7 @@ if handles.TMapsFirst_tObj.Value == 1 && ...
         end
         
         TMapsNotRef     = handles.eVar.TMapsD{NotNRef};
-        TMapNotRefCrop  = TMapsNotRef(MinPRow:MaxPRow,MinPCol:MaxPCol,1,1,Np);
+        TMapNotRefCrop  = TMapsNotRef(MinPRow:MaxPRow,MinPCol:MaxPCol,1,1,CTPhase);
         
         [NRowCrop,NColCrop] = size(TMapNotRefCrop);
         TMapNotRefCropT     = zeros(NRowCrop,NColCrop);
@@ -85,25 +85,29 @@ if handles.TMapsFirst_tObj.Value == 1 && ...
         
         % --- ////// ---
         
+        TMapDiffFocusCrop   = TMapNotRefCropT - TMapRefCropT;
+        TDiffValues         = nonzeros(TMapDiffFocusCrop);
         
+        FocusTDiffAverage    = mean(TDiffValues);
+        FocusTDiffVar        = var(TDiffValues);
         
-    elseif ~isequal( RecPosition,handles.FocusRecROI_rObj.Position )
+    elseif isfield( handles,'FocusRecROI_rObj' )   % --- Condition: Existed and Moved Focus Rectangle
         
         handles.FocusRecROI_rObj.Position = RecPosition;
         
         % --- Crop Focus ROI ---
         
-        NRef    = str2double( handles.RefSelection_gObj.SelectedObj.Tag );
-        Np              = handles.eVar.Np;
+        NRef            = str2double( handles.RefSelection_gObj.SelectedObject.Tag );
+        CTPhase         = handles.eVar.CTPhase;
         TMapsRef        = handles.eVar.TMapsD{NRef};
-        TMapRefCrop     = TMapsRef(MinPRow:MaxPRow,MinPCol:MaxPCol,1,1,Np);
+        TMapRefCrop     = TMapsRef(MinPRow:MaxPRow,MinPCol:MaxPCol,1,1,CTPhase);
         
-        [NRowCrop,NColCrop] = size(TMapsRefCorp);
+        [NRowCrop,NColCrop] = size(TMapRefCrop);
         TMapRefCropT        = zeros(NRowCrop,NColCrop);
         for iRowCrop = 1:NRowCrop
             for iColCrop = 1:NColCrop
                 
-                if TMapRefCorp(iRowCrop,iColCrop) >= 2 % --- Focus Threshold
+                if TMapRefCrop(iRowCrop,iColCrop) >= 2 % --- Focus Threshold
                     
                     TMapRefCropT(iRowCrop,iColCrop) = TMapRefCrop(iRowCrop,iColCrop);
                     
@@ -123,7 +127,7 @@ if handles.TMapsFirst_tObj.Value == 1 && ...
         end
         
         TMapsNotRef     = handles.eVar.TMapsD{NotNRef};
-        TMapNotRefCrop  = TMapsNotRef(MinPRow:MaxPRow,MinPCol:MaxPCol,1,1,Np);
+        TMapNotRefCrop  = TMapsNotRef(MinPRow:MaxPRow,MinPCol:MaxPCol,1,1,CTPhase);
         
         [NRowCrop,NColCrop] = size(TMapNotRefCrop);
         TMapNotRefCropT     = zeros(NRowCrop,NColCrop);
@@ -145,15 +149,21 @@ if handles.TMapsFirst_tObj.Value == 1 && ...
         
         % --- ////// ---
         
-        TMapDiffFocusCrop = TMapNotRefCropT - TMapRefCrop
+        TMapDiffFocusCrop   = TMapNotRefCropT - TMapRefCropT;
+        TDiffValues         = nonzeros(TMapDiffFocusCrop);
+        
+        FocusTDiffAverage   = mean(TDiffValues);
+        FocusTDiffVar       = var(TDiffValues);
         
     end
+    
 else
     
     if isfield( handles,'FocusRecROI_rObj' )
         
         delete(handles.FocusRecROI_rObj);
         handles = rmfield(handles,'FocusRecROI_rObj');
+        
     end
     
 end
