@@ -79,6 +79,8 @@ else
     handles.TPlots_lObj.FontSize   = 10;
     handles.TPlots_lObj.FontName   = 'Segoe UI';
     
+    handles.eVar.Tpfs = Tpfs;
+    
 end
 
 
