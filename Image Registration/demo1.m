@@ -20,6 +20,9 @@ DpField = infoReg.DisplacementField;
 infoReg2 = registerImages(MMap_Warp_Base,MMap_HBW_Base);
 DpField2 = infoReg2.DisplacementField;
 
+%MMap_Warp_BaseMatched = imhistmatch(MMap_Warp_Base,MMap_GoodShim_Base);
+[DpField3,MMap_Unwarp3] = imregdemons(MMap_Warp_Base,MMap_GoodShim_Base,150,'AccumulatedFieldSmoothing',1.3,'PyramidLevels',5);
+
 TMaps_TEcorrected_Warp      = DataSet.TMaps_TEerror_Warp;
 [Nx,Ny,Nz,Nc,Np]            = size(TMaps_TEcorrected_Warp);
 TMaps_TEcorrected_Unwarp    = zeros(Nx,Ny,Nz,Nc,Np);
