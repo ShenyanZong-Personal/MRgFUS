@@ -5,7 +5,10 @@ This file lists all files with specfied suffixs I want to ignore.
 *.dcm
 ---------------------------------------------
 *.mat
+*.IMA
+
 !DataBase.mat
+!NonRigidReg.mat
 ---------------------------------------------
 *.zip
 ---------------------------------------------
@@ -16,4 +19,7 @@ This file lists all files with specfied suffixs I want to ignore.
 *.jpg
 ---------------------------------------------
 *.MRDC.*
+---------------------------------------------
+*.hdr
+*.bin
 ---------------------------------------------
