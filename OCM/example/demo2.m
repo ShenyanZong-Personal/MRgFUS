@@ -16,7 +16,11 @@ Ts          = 1/fsampling:1/fsampling:Tduration;
 us_data_s1  = us_data(:,1);
 
 figure; plot( Ts,us_data_s1 );
-figure; imagesc( 1:size(us_data,2),Ts,us_data ); colormap('Gray');
+xlabel('Time (s)'); ylabel('Amplitude');
+legend('1st Sensor, 1st Acqusition');
+
+figure; imagesc( 1:2:size(us_data,2),Ts,us_data(:,1:2:end) ); colormap('Gray');
+xlabel('Number Of Acqusition (N)'); ylabel('Time (s)');
 
 % --- Filter and ultrasound parameters
 attn    = 0.5;          % --- dB/MHz; Attenuation
@@ -31,20 +35,30 @@ fs          = linspace(-fsampling/2,fsampling/2,size(us_data_s1,1));
 us_data_sp  = fftshift( fft(us_data),1 );
 
 figure; plot( fs,abs(us_data_sp1) ); axis([min(fs) max(fs) 0 100]);
-figure; imagesc( 1:size(us_data,2),fs,abs(us_data_sp),[0 50] ); colormap('Gray');
+xlabel('Frequency (Hz)'); ylabel('Magnitude');
+
+figure; imagesc( 1:2:size(us_data,2),fs,abs(us_data_sp(:,1:2:end)),[0 50] ); colormap('Gray');
+xlabel('Number Of Acqusition (N)'); ylabel('Frequency (Hz)');
 
 us_data_sp1_pos             = us_data_sp1;
 us_data_sp1_pos(1:end/2)    = 0;    % --- Remove the part of minus frequency
 us_data_sp_pos              = us_data_sp;
-us_data_sp_pos(1:end/2,:)   = 0;
+us_data_sp_pos(1:end/2,:)   = 0;    % --- Remove the part of minus frequency
 
-figure; plot( fs,abs(us_data_sp1_pos) );
-figure; imagesc( 1:size(us_data,2),fs,abs(us_data_sp_pos),[0 50] ); colormap('Gray');
+figure; plot( fs,abs(us_data_sp1_pos) ); axis([min(fs) max(fs) 0 100]);
+xlabel('Frequency (Hz)'); ylabel('Magnitude');
+figure; imagesc( 1:2:size(us_data,2),fs,abs(us_data_sp_pos(:,1:2:end)),[0 50] ); colormap('Gray');
+xlabel('Number Of Acqusition (N)'); ylabel('Frequency (Hz)');
 
 us_data_s1_rebuild  = ifft( us_data_sp1_pos );
 us_data_rebuild     = ifft( us_data_sp_pos );
 
 figure; plot( Ts,abs(us_data_s1_rebuild) );
+xlabel('Time (s)'); ylabel('Magnitude');
 figure; plot( Ts,angle(us_data_s1_rebuild) );
-figure; imagesc( 1:size(us_data,2),Ts,abs(us_data_rebuild) ); colormap('Gray');
-figure; imagesc( 1:size(us_data,2),Ts,angle(us_data_rebuild) ); colormap('Gray');
+xlabel('Time (s)'); ylabel('Angle');
+
+figure; imagesc( 1:2:size(us_data,2),Ts,abs(us_data_rebuild(:,1:2:end)) ); colormap('Gray');
+xlabel('Number Of Acqusition (N)'); ylabel('Time (s)'); title('Magnitude');
+figure; imagesc( 1:2:size(us_data,2),Ts,angle(us_data_rebuild(:,1:2:end)) ); colormap('Gray');
+xlabel('Number Of Acqusition (N)'); ylabel('Time (s)'); title('Angle');

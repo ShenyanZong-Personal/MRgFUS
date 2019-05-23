@@ -90,7 +90,7 @@ else
             DSets   = load('ForShenyan.mat');
             
             BW_Index    = 1;
-            Shim_Status = 'Bad';
+            Shim_Status = 'Good';
             
             if (BW_Index == 1) && strcmp(Shim_Status,'Good')
                 
