@@ -62,3 +62,10 @@ figure; imagesc( 1:2:size(us_data,2),Ts,abs(us_data_rebuild(:,1:2:end)) ); color
 xlabel('Number Of Acqusition (N)'); ylabel('Time (s)'); title('Magnitude');
 figure; imagesc( 1:2:size(us_data,2),Ts,angle(us_data_rebuild(:,1:2:end)) ); colormap('Gray');
 xlabel('Number Of Acqusition (N)'); ylabel('Time (s)'); title('Angle');
+
+%% Remove the part of minus frequency, = []
+us_data_sp1_postive             = us_data_sp1;
+us_data_sp1_postive(1:end/2)    = [];
+us_data_s1_preb                 = ifft( us_data_sp1_postive );
+figure; plot( abs(us_data_s1_preb) );
+figure; plot( angle(us_data_s1_preb) );

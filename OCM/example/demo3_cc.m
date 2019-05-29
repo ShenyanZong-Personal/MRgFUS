@@ -24,13 +24,13 @@ dt_raw = 1/bw;	    % Dwell time, in s
 % load data
 fprintf('Loading the OCM data\n');
 %ocm_real = load_OCMdata(filename);     % CC
-[~,~,ocm_real] = read_ocm_trace( strcat(dir_heat,filename),[] );
+[~,~,ocm_real]  = read_ocm_trace( strcat(dir_heat,filename),[] );
+ocm_real        = ocm_real';
+ocm_real        = ocm_real(:,1:2:end);
 
 % There is really nothing to do with the first ~250 points, just crop them
-% Nt_raw = size(ocm_real,1);	% Should be 5000-250, presumably -- CC
-Nt_raw = size(ocm_real,2);
-% NT = size(ocm_real,2);    % CC
-NT = size(ocm_real,1);
+Nt_raw = size(ocm_real,1);	% Should be 5000-250, presumably 
+NT = size(ocm_real,2);    % CC
 T = (0:NT-1)*dT;
 
 % Perform Transmit Gain Compensation (TGC)
