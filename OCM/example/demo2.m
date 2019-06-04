@@ -74,7 +74,7 @@ Td          = linspace( (1/fsampling)*2,Tduration,SamplingP );
 figure; plot( Td,abs(us_data_s1_preb) );
 figure; plot( Td,angle(us_data_s1_preb) );
 
-us_phase        = angle(us_data_s1_preb);
+us_phase        = unwrap( angle(us_data_s1_preb) );
 us_phase_diff   = diff(us_phase);
 us_phase_diff   = [0; us_phase_diff];
 figure; plot( Td,us_phase_diff ); title('Phase Differential');
