@@ -32,9 +32,11 @@ else
         figure(1);
         imagesc(Tsensor1_tks,Td_tks,ocm_us_sensor1); colormap('Gray');
         xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
+        title('Ultrasound Signal, Sensor1');
         figure(2);
         imagesc(Tsensor2_tks,Td_tks,ocm_us_sensor2); colormap('Gray');
         xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
+        title('Ultrasound Signal, Sensor2');
 
         %% --- Phase calculation by Hilbert transform
         HbAS_us_sensor1 = hilbert( ocm_us_sensor1 );
@@ -44,8 +46,21 @@ else
         InstPh_us_sensor2 = unwrap( angle(HbAS_us_sensor2) );
         
         dPh_us_sensor1 = diff( InstPh_us_sensor1 );
+        dPh_us_sensor1 = padarray( dPh_us_sensor1,[1 0],'pre' );
         dPh_us_sensor2 = diff( InstPh_us_sensor2 );
+        dPh_us_sensor2 = padarray( dPh_us_sensor2,[1 0],'pre' );
         
+        instf_us_sensor1 = ( dPh_us_sensor1./(2*pi) ).*fs;
+        instf_us_sensor2 = ( dPh_us_sensor2./(2*pi) ).*fs;
+        
+        figure(3);
+        imagesc(Tsensor1_tks,Td_tks,instf_us_sensor1); colormap('Gray');
+        xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
+        title('Instant Frequency(Hz), Sensor1');
+        figure(4);
+        imagesc(Tsensor1_tks,Td_tks,instf_us_sensor2); colormap('Gray');
+        xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
+        title('Instant Frequency(Hz), Sensor2');
     else
         fprintf('No OCM file selection ...\n');
     end
