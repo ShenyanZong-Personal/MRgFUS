@@ -39,6 +39,8 @@ else
         title('Ultrasound Signal, Sensor2');
 
         %% --- Phase calculation by Hilbert transform
+        
+        % - Hilbert transform
         HbAS_us_sensor1 = hilbert( ocm_us_sensor1 );
         HbAS_us_sensor2 = hilbert( ocm_us_sensor2 );
         
@@ -50,6 +52,7 @@ else
         dPh_us_sensor2 = diff( InstPh_us_sensor2 );
         dPh_us_sensor2 = padarray( dPh_us_sensor2,[1 0],'pre' );
         
+        % - Convert instant phase to instant frequency
         instf_us_sensor1 = ( dPh_us_sensor1./(2*pi) ).*fs;
         instf_us_sensor2 = ( dPh_us_sensor2./(2*pi) ).*fs;
         
@@ -58,9 +61,14 @@ else
         xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
         title('Instant Frequency(Hz), Sensor1');
         figure(4);
-        imagesc(Tsensor1_tks,Td_tks,instf_us_sensor2); colormap('Gray');
+        imagesc(Tsensor2_tks,Td_tks,instf_us_sensor2); colormap('Gray');
         xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
         title('Instant Frequency(Hz), Sensor2');
+        
+        %% --- Phase calculation by negative frequency removal
+        
+        
+        
     else
         fprintf('No OCM file selection ...\n');
     end
