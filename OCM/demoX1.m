@@ -13,6 +13,24 @@ else
         
         [ocm_us,ts1_us,ts2_us,nEl] = load_OCMdata([OCM_path OCM_file],-1);
         
+        %% --- Remove uneffective traces
+        TR = 8e-3;  % - Repetition time, s
+        % - the last one trace
+        ocm_us  = ocm_us(:,1:end-1);
+        ts2_us  = ts2_us(1:end-1); 
+        
+        % - the undesired traces
+        diff_ts2_us_sensor1 = diff( ts2_us(1:2:end) );
+        Nth_undesired       = find( diff_ts2_us_sensor1 < TR*0.6 );
+        Nth_undesired       = Nth_undesired(1:2:end);
+        Nth_undesired       = 2.*(Nth_undesired +1) -1;
+        
+        ocm_us(:,Nth_undesired)     = [];
+        ocm_us(:,Nth_undesired+1)   = [];
+        
+        ts2_us(Nth_undesired)       = [];
+        ts2_us(Nth_undesired+1)     = [];
+        
         %% --- Ultrasound scanning parameters
         fs          = 10e6;                         % - sampling frequency, Hz
         F0          = 1e6;                          % - ultrasound frequency, Hz
