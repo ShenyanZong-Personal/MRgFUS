@@ -29,8 +29,7 @@ else
         
         ocm_us(:,Nth_undesired)     = [];
         ts2_us(Nth_undesired)       = [];
-
-        
+       
         %% --- Ultrasound scanning parameters
         fs          = 10e6;                         % - sampling frequency, Hz
         F0          = 1e6;                          % - ultrasound frequency, Hz
@@ -102,8 +101,16 @@ else
         us_sensor1_InstPh   = unwrap( angle(us_sensor1_complex) );
         us_sensor2_InstPh   = unwrap( angle(us_sensor2_complex) );
         
-        figure(5); imagesc(Tsensor1_tks,Td_tks(1:2:end),us_sensor1_InstPh); colormap('Gray');
-        figure(6); imagesc(Tsensor2_tks,Td_tks(1:2:end),us_sensor2_InstPh); colormap('Gray');
+        us_sensor1_dPh  = diff( us_sensor1_InstPh );
+        us_sensor1_dPh  = padarray( us_sensor1_dPh,[1 0],'pre' );
+        us_sensor2_dPh  = diff( us_sensor2_InstPh );
+        us_sensor2_dPh  = padarray( us_sensor2_dPh,[1 0],'pre' );
+        
+        us_sensor1_instf    = ( us_sensor1_dPh/(2*pi) ).*fs;
+        us_sensor2_instf    = ( us_sensor2_dPh/(2*pi) ).*fs;
+        
+        figure(5); imagesc(Tsensor1_tks,Td_tks(1:2:end),us_sensor1_instf); colormap('Gray');
+        figure(6); imagesc(Tsensor2_tks,Td_tks(1:2:end),us_sensor2_instf); colormap('Gray');
     else
         fprintf('No OCM file selection ...\n');
     end
