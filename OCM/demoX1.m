@@ -76,11 +76,11 @@ else
         figure(3);
         imagesc(Tsensor1_tks,Td_tks,instf_us_sensor1); colormap('Gray');
         xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
-        title('Instant Frequency(Hz), Sensor1');
+        title({'Instant Frequency(Hz), Sensor1';'Hilbert Transform'});
         figure(4);
         imagesc(Tsensor2_tks,Td_tks,instf_us_sensor2); colormap('Gray');
         xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
-        title('Instant Frequency(Hz), Sensor2');
+        title({'Instant Frequency(Hz), Sensor2';'Hilbert Transform'});
         
         %% --- Phase calculation by negative frequency removal
         us_sensor1_spectrum = fft( ocm_us_sensor1 );  % - along column
@@ -110,7 +110,11 @@ else
         us_sensor2_instf    = ( us_sensor2_dPh/(2*pi) ).*fs;
         
         figure(5); imagesc(Tsensor1_tks,Td_tks(1:2:end),us_sensor1_instf); colormap('Gray');
+        xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
+        title({'Instant Frequency(Hz), Sensor 1';'Negative Frequency Removal'});
         figure(6); imagesc(Tsensor2_tks,Td_tks(1:2:end),us_sensor2_instf); colormap('Gray');
+        xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
+        title({'Instant Frequency(Hz), Sensor 2';'Negative Frequency Removal'});
     else
         fprintf('No OCM file selection ...\n');
     end
