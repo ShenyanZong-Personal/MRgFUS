@@ -24,13 +24,12 @@ else
         Nth_undesired       = find( diff_ts2_us_sensor1 < TR*0.6 );
         Nth_undesired       = Nth_undesired(1:2:end);
         Nth_undesired       = 2.*(Nth_undesired +1) -1;
+        Nth_undesired       = [Nth_undesired;Nth_undesired+1];
+        Nth_undesired       = reshape(Nth_undesired,1,[]);
         
         ocm_us(:,Nth_undesired)     = [];
-        ocm_us(:,Nth_undesired+1)   = [];
-        
         ts2_us(Nth_undesired)       = [];
-        ts2_us(Nth_undesired+1)     = [];
-        
+       
         %% --- Ultrasound scanning parameters
         fs          = 10e6;                         % - sampling frequency, Hz
         F0          = 1e6;                          % - ultrasound frequency, Hz
@@ -77,16 +76,45 @@ else
         figure(3);
         imagesc(Tsensor1_tks,Td_tks,instf_us_sensor1); colormap('Gray');
         xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
-        title('Instant Frequency(Hz), Sensor1');
+        title({'Instant Frequency(Hz), Sensor1';'Hilbert Transform'});
         figure(4);
         imagesc(Tsensor2_tks,Td_tks,instf_us_sensor2); colormap('Gray');
         xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
-        title('Instant Frequency(Hz), Sensor2');
+        title({'Instant Frequency(Hz), Sensor2';'Hilbert Transform'});
         
         %% --- Phase calculation by negative frequency removal
+        us_sensor1_spectrum = fft( ocm_us_sensor1 );  % - along column
+        us_sensor2_spectrum = fft( ocm_us_sensor2 );
         
+        us_sensor1_spectrum = fftshift( us_sensor1_spectrum,1 );    % - along column
+        us_sensor2_spectrum = fftshift( us_sensor2_spectrum,1 );
         
+        % - Remove negative frequecy
+        us_sensor1_spectrum_positive    = us_sensor1_spectrum;
+        us_sensor1_spectrum_positive(1:nEl/2,:)     = [];
+        us_sensor2_spectrum_positive    = us_sensor2_spectrum;
+        us_sensor2_spectrum_positive(1:nEl/2,:)     = [];
         
+        us_sensor1_complex  = ifft( us_sensor1_spectrum_positive );
+        us_sensor2_complex  = ifft( us_sensor2_spectrum_positive );
+        
+        us_sensor1_InstPh   = unwrap( angle(us_sensor1_complex) );
+        us_sensor2_InstPh   = unwrap( angle(us_sensor2_complex) );
+        
+        us_sensor1_dPh  = diff( us_sensor1_InstPh );
+        us_sensor1_dPh  = padarray( us_sensor1_dPh,[1 0],'pre' );
+        us_sensor2_dPh  = diff( us_sensor2_InstPh );
+        us_sensor2_dPh  = padarray( us_sensor2_dPh,[1 0],'pre' );
+        
+        us_sensor1_instf    = ( us_sensor1_dPh/(2*pi) ).*fs;
+        us_sensor2_instf    = ( us_sensor2_dPh/(2*pi) ).*fs;
+        
+        figure(5); imagesc(Tsensor1_tks,Td_tks(1:2:end),us_sensor1_instf); colormap('Gray');
+        xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
+        title({'Instant Frequency(Hz), Sensor 1';'Negative Frequency Removal'});
+        figure(6); imagesc(Tsensor2_tks,Td_tks(1:2:end),us_sensor2_instf); colormap('Gray');
+        xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
+        title({'Instant Frequency(Hz), Sensor 2';'Negative Frequency Removal'});
     else
         fprintf('No OCM file selection ...\n');
     end

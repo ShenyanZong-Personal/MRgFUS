@@ -36,3 +36,7 @@ dPh     = diff(instPh);
 figure; plot( Ts,unwrap( atan2(imag(HbSig),real(HbSig)) ) ); title('By Hilbert Transfrom');
 figure; plot( diff( unwrap( atan2(imag(HbSig),real(HbSig))) ) );
 axis([-inf inf 0 pi]);
+
+%% Hilbert-Huang Transform
+[imf_sig,residual_sig]  = emd(Sig);
+hs_sig  = hht(imf_sig,freq_sample);
