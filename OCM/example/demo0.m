@@ -30,7 +30,9 @@ figure; plot( abs( SigSpec(:,1) ) );
 
 %% Hilbert Transform
 
-HbSig = hilbert(Sig);
+HbSig   = hilbert(Sig);
+instPh  = unwrap( angle(HbSig) );
+dPh     = diff(instPh);
 figure; plot( Ts,unwrap( atan2(imag(HbSig),real(HbSig)) ) ); title('By Hilbert Transfrom');
 figure; plot( diff( unwrap( atan2(imag(HbSig),real(HbSig))) ) );
 axis([-inf inf 0 pi]);
