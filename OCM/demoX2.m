@@ -58,16 +58,16 @@ else
         %% --- Phase calculation by Hilbert-Huang transform
         s1_sensor1  = ocm_us_sensor1(:,1);
         
-        figure; plot(s1_sensor1);
+        figure; plot(Td_tks,s1_sensor1);
         
         [imf_s1_sensor1,residual_s1_sensor1] = emd(s1_sensor1);
-        hs_s1_sensor1 = hht(imf_s1_sensor1,fs);
+        hs_s1_sensor1 = hht(imf_s1_sensor1,fs,'FrequencyResolution',(fs/2-0)/1000);
         
         s80_sensor1 = ocm_us_sensor1(:,80);
-        figure; plot(s80_sensor1);
+        figure; plot(Td_tks,s80_sensor1);
         
         [imf_s80_sensor1,residual_s80_sensor1] = emd(s80_sensor1);
-        hs_s80_sensor1 = hht(imf_s80_sensor1,fs);
+        hs_s80_sensor1 = hht(imf_s80_sensor1,fs,'FrequencyResolution',(fs/2-0)/1000);
         
 
     else
