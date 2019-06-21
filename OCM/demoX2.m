@@ -62,7 +62,8 @@ else
         title('1st US Trace, Sensor1');
         
         [imf_s1_sensor1,residual_s1_sensor1] = emd(s1_sensor1);
-        hs_s1_sensor1 = hht(imf_s1_sensor1,fs,'FrequencyResolution',(fs/2-0)/1000);
+        [hs_s1_sensor1,f_hs1_sensor1,t_hs1_sensor1,imfinsf_hs1_sensor1,imfinse_hs1_sensor1] ... 
+            = hht(imf_s1_sensor1,fs,'FrequencyResolution',(fs/2-0)/1000);
         
         s80_sensor1 = ocm_us_sensor1(:,80);
         figure; plot(Td_tks,s80_sensor1);
@@ -70,7 +71,8 @@ else
         title('80th US Trace, Sensor1');
         
         [imf_s80_sensor1,residual_s80_sensor1] = emd(s80_sensor1);
-        hs_s80_sensor1 = hht(imf_s80_sensor1,fs,'FrequencyResolution',(fs/2-0)/1000);
+        [hs_s80_sensor1,f_hs80_sensor1,t_hs80_sensor1,imfinsf_hs80_sensor1,imfinse_hs80_sensor1] ... 
+            = hht(imf_s80_sensor1,fs,'FrequencyResolution',(fs/2-0)/1000);
         
 
     else
