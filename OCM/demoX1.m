@@ -115,6 +115,11 @@ else
         figure(6); imagesc(Tsensor2_tks,Td_tks(1:2:end),us_sensor2_instf); colormap('Gray');
         xlabel('Sensor Time(s)'); ylabel('Ultrasound Time(s)');
         title({'Instant Frequency(Hz), Sensor 2';'Negative Frequency Removal'});
+        
+        %% --- Let negative be euqual to zero
+        us_sensor1_spectrum_positive_zero               = us_sensor1_spectrum;
+        us_sensor1_spectrum_positive_zero(1:nEl/2,:)    = 0;
+        us_sensor1_complex_zero     = ifft( us_sensor1_spectrum_positive_zero );
     else
         fprintf('No OCM file selection ...\n');
     end
