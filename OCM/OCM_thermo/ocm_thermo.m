@@ -1,4 +1,4 @@
-clear; clf;
+clear; close all;
 
 addpath('../for_Shenyan');
 
@@ -18,4 +18,10 @@ else
     end
 end
 
-[img_file,img_path] = uigetfile({'*.dat'},'Reconstructed Images Selection');
+[raw_file,raw_path] = uigetfile({'*.dat'},'Reconstructed Images Selection');
+if raw_file == 0
+    fprintf('no raw data selected ...\n');
+else
+    fprintf('read raw data in *.dat file ...\n');
+    maps_obj = mapVBVD([raw_path raw_file]);
+end
