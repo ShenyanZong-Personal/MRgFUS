@@ -3,7 +3,6 @@ clear; close all;
 addpath('../for_Shenyan');
 
 [ocm_file,ocm_path,ocm_format] = uigetfile({'*.bin'},'OCM Data Selection');
-
 if ocm_file == 0
     fprintf('no ocm data selected ...\n');
 else
@@ -18,10 +17,13 @@ else
     end
 end
 
-[raw_file,raw_path] = uigetfile({'*.dat'},'Reconstructed Images Selection');
-if raw_file == 0
-    fprintf('no raw data selected ...\n');
+[kspace_file,kspace_path] = uigetfile({'*.dat'},'Reconstructed Images Selection');
+if kspace_file == 0
+    fprintf('no raw kspace data selected ...\n');
 else
-    fprintf('read raw data in *.dat file ...\n');
-    maps_obj = mapVBVD([raw_path raw_file]);
+    
+    fprintf('read raw kspace data in *.dat file ...\n');
+    kspace_obj  = mapVBVD([kspace_path kspace_file]);
+    maps_kspace = kspace_obj.image();
+    
 end
