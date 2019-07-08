@@ -1,6 +1,7 @@
 clear; close all;
 
 addpath('../for_Shenyan');
+addpath('./extern');
 
 [ocm_file,ocm_path,ocm_format] = uigetfile({'*.bin'},'OCM Data Selection');
 if ocm_file == 0
@@ -25,5 +26,8 @@ else
     fprintf('read raw kspace data in *.dat file ...\n');
     kspace_obj  = mapVBVD([kspace_path kspace_file]);
     maps_kspace = kspace_obj.image();
+    maps_kspace = realign( maps_kspace );
     
 end
+
+
