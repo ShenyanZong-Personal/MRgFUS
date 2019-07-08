@@ -12,6 +12,9 @@ function [ kspace_5D ] = realign( kspace_9D )
 %   nS: the number of slice
 %   nC: the number of coil
 %   nPh: the number of time frame
+%
+% Eidt Histories:
+% 07-08-2019 /Shenyan/ Create this function by Shenyan
 
 kspace_9D_ex    = permute(kspace_9D,[1 3 5 2 9 4 6 7 8]);
 kspace_5D       = squeeze( kspace_9D_ex );
