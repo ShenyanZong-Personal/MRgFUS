@@ -6,6 +6,7 @@ addpath('./extern');
 [ocm_file,ocm_path,ocm_format] = uigetfile({'*.bin'},'OCM Data Selection');
 if ocm_file == 0
     fprintf('no ocm data selected ...\n');
+    return;
 else
     if ocm_format == 1
         
@@ -21,6 +22,7 @@ end
 [kspace_file,kspace_path] = uigetfile({'*.dat'},'Reconstructed Images Selection');
 if kspace_file == 0
     fprintf('no raw kspace data selected ...\n');
+    return;
 else
     
     fprintf('read raw kspace data in *.dat file ...\n');
