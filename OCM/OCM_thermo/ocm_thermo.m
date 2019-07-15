@@ -3,6 +3,10 @@ clear; close all;
 addpath('../for_Shenyan');
 addpath('./extern');
 
+% OCM parameters
+Ts = 0.4;       % --- Time Duration: ms
+fs = 10e6;       % --- Sampling Frequency: MHz
+
 [ocm_file,ocm_path,ocm_format] = uigetfile({'*.bin'},'OCM Data Selection');
 if ocm_file == 0
     fprintf('no ocm data selected ...\n');
@@ -12,10 +16,12 @@ else
         
         fprintf('read ocm data in *.bin file ...\n');
         [us_ocm,us_ts1,us_ts2,us_nEl] = load_OCMdata([ocm_path ocm_file],-1);
-        us_t_stamps = us_ts2 - us_ts2(1);
+        us_t_stamps = us_ts2 - us_ts2(1);   % --- US Trace Time
+        us_s_stamps = 1/fs:1/fs:Ts*10^(-3);
         
         figure(1);
-        imagesc(us_ocm); colormap('Gray');
+        imagesc(us_t_stamps,us_s_stamps,us_ocm); colormap('Gray');
+        ylabel('US Trace Time (s)'); xlabel('US Scan Time (s)');
     end
 end
 
