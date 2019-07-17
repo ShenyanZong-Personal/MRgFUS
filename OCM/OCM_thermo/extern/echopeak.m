@@ -3,7 +3,9 @@ function [us_t_peak] = echopeak(us_ocm,us_s_stamps)
 %   input:
 %   us_ocm ---OCM matrix: trace matrix or one trace.
 %   US trace should be in column. For one trace, it is a column vector.
-%   us_s_stamps --- A time vector for all sampled US signal. 
+%   us_s_stamps --- A time vector for all sampled US signal.
+
+%   ***: This method is not so good in locating echo peak.
 
 if size(us_ocm,1) ~= numel(us_s_stamps)
     error('The length of time stamps should be equal.');
