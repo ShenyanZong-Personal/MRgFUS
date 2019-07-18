@@ -1,4 +1,4 @@
-function [] = breathmotion1( us_ocm )
+function us_dTheta_dT = breathmotion1( us_ocm )
 %breathmotion1 to track motion trajectory caused by breath
 %   input: us_ocm, a multidimensional matrix.
 %   dimension = number of discrete points(row) × number of traces(column).
@@ -18,7 +18,10 @@ else
     us_ocm_rmo_plural = hilbert( us_ocm_rmo );
     
     us_ocm_rmo_plural_conj = conj( us_ocm_rmo_plural );
-    us_dTheta_dT = angle( us_ocm_rmo_plural(:,2:end).*us_ocm_rmo_plural_conj(:,1:end-1) );
+    us_dTheta_dT = zeros(Np,Ntr-1);
+    for iNtr = 1:Ntr-1
+        us_dTheta_dT(:,iNtr) = angle( us_ocm_rmo_plural(:,iNtr+1).*us_ocm_rmo_plural_conj(:,iNtr) );
+    end
     
 end
 
